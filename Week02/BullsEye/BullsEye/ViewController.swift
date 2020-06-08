@@ -44,11 +44,6 @@ class ViewController: UIViewController {
     updateViews()
   }
 
-//  func startNewRound() {
-//    game.startNewRound()
-//    updateViews()
-//  }
-
   func updateViews() {
     slider.value = defaultSliderValue
     targetLabel.text = String(game.targetValue)
