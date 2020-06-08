@@ -17,14 +17,27 @@ class ViewController: UIViewController {
   @IBOutlet weak var targetLabel: UILabel!
   @IBOutlet weak var scoreLabel: UILabel!
   @IBOutlet weak var roundLabel: UILabel!
+
+  var selectedValue: Int {
+    return Int(slider.value.rounded())
+  }
+  var quickDiff: Int {
+    return abs(game.targetValue - selectedValue)
+  }
+
   
   override func viewDidLoad() {
     super.viewDidLoad()
     startNewGame()
   }
 
+  @IBAction private func sliderDidMove(_ sender: UISlider) {
+    slider.minimumTrackTintColor =
+    UIColor.blue.withAlphaComponent(CGFloat(quickDiff)/100.0)
+
+  }
+
   @IBAction func showAlert() {
-    let selectedValue = Int(slider.value.rounded())
     game.playValue(selectedValue)
 
     let title = game.feedback
@@ -41,14 +54,21 @@ class ViewController: UIViewController {
   
   @IBAction func startNewGame() {
     game.startNewGame()
+    slider.value = defaultSliderValue
     updateViews()
   }
 
   func updateViews() {
-    slider.value = defaultSliderValue
+    setSliderTint()
     targetLabel.text = String(game.targetValue)
     scoreLabel.text = String(game.score)
     roundLabel.text = String(game.round)
+  }
+
+  private func setSliderTint() {
+    slider.minimumTrackTintColor =
+    UIColor.blue.withAlphaComponent(CGFloat(quickDiff)/100.0)
+
   }
   
 }
