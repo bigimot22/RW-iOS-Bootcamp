@@ -25,10 +25,8 @@ class ViewController: UIViewController {
 
   @IBAction func showAlert() {
     guessTextField.resignFirstResponder()
-    let input = guessTextField.text ?? ""
-    if let value = Int(input) {
-      game.playValue(value)
-    }
+    guard let value = getValidatedInput() else { return }
+    game.playValue(value)
     let title = game.feedback
     let message = "You scored \(game.points) points"
     let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -50,6 +48,15 @@ class ViewController: UIViewController {
     slider.value = Float(game.targetValue)
     scoreLabel.text = String(game.score)
     roundLabel.text = String(game.round)
+  }
+
+  private func getValidatedInput() -> Int? {
+    let input = guessTextField.text ?? ""
+    guard let value = Int(input) else { return nil }
+    if value > Int(slider.maximumValue) || value < Int(slider.minimumValue) {
+      return nil
+    }
+    return value
   }
 
 }
