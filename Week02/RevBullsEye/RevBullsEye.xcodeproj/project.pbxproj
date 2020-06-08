@@ -13,6 +13,7 @@
 		69155365248E7773002D30CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69155363248E7773002D30CB /* Main.storyboard */; };
 		69155367248E777B002D30CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69155366248E777B002D30CB /* Assets.xcassets */; };
 		6915536A248E777B002D30CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69155368248E777B002D30CB /* LaunchScreen.storyboard */; };
+		69155372248E7CD5002D30CB /* BullsEyeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69155371248E7CD5002D30CB /* BullsEyeGame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		69155366248E777B002D30CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		69155369248E777B002D30CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6915536B248E777C002D30CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69155371248E7CD5002D30CB /* BullsEyeGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BullsEyeGame.swift; path = ../../BullsEye/BullsEye/BullsEyeGame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				6915535D248E7773002D30CB /* AppDelegate.swift */,
 				6915535F248E7773002D30CB /* SceneDelegate.swift */,
 				69155361248E7773002D30CB /* ViewController.swift */,
+				69155371248E7CD5002D30CB /* BullsEyeGame.swift */,
 				69155363248E7773002D30CB /* Main.storyboard */,
 				69155366248E777B002D30CB /* Assets.xcassets */,
 				69155368248E777B002D30CB /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69155372248E7CD5002D30CB /* BullsEyeGame.swift in Sources */,
 				69155362248E7773002D30CB /* ViewController.swift in Sources */,
 				6915535E248E7773002D30CB /* AppDelegate.swift in Sources */,
 				69155360248E7773002D30CB /* SceneDelegate.swift in Sources */,
