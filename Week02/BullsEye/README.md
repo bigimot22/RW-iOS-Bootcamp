@@ -7,4 +7,4 @@ Although, Apple recommends to [use struts by default](https://developer.apple.co
 
 Built it specifically for assigment 02 of the RW iOS Bootcamp at https://www.raywenderlich.com/10529048-ios-bootcamp.
 
-![Image of BullsEye Main Screen](Screenshots/bullseye-screen1.jpg)
+![Image of BullsEye Main Screen](Screenshots/bullseye-screen1.png)

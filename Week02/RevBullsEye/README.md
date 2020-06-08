@@ -6,4 +6,4 @@ This is a reverse version of the famous **BullsEyeGame** . The idea is to use th
 
 Built it specifically for assigment 02 of the RW iOS Bootcamp at https://www.raywenderlich.com/10529048-ios-bootcamp.
 
-![Image of RevBullsEye Main Screen](Screenshots/revbullseye-screen1.jpg)
+![Image of RevBullsEye Main Screen](Screenshots/revbullseye-screen1.png)
