@@ -97,15 +97,16 @@ class HomeViewController: UIViewController{
   }
   
   func setView1Data() {
-    if let data = cryptoData {
-      let namesArray = data.map { (crypto) -> String in
-        return String(crypto.name)
-      }.joined(separator: ", ")
-      self.view1TextLabel.text = namesArray
-    } else {
+    guard  let cryptoData = cryptoData else {
       self.view1TextLabel.text = "Not data available."
+      return
     }
+
+    let allCryptos = cryptoData.map { $0.name }
+      .joined(separator: ", ")
+    self.view1TextLabel.text = allCryptos
   }
+
   
   func setView2Data() {
     guard  let cryptoData = cryptoData else {
@@ -113,11 +114,10 @@ class HomeViewController: UIViewController{
       return
     }
 
-    let arr = cryptoData.filter { $0.currentValue > $0.previousValue }
+    let increasingCryptos = cryptoData.filter { $0.currentValue > $0.previousValue }
       .map { $0.name }
-    .joined(separator: ", ")
-
-    self.view2TextLabel.text = arr
+      .joined(separator: ", ")
+    self.view2TextLabel.text = increasingCryptos
   }
   
   func setView3Data() {
@@ -126,11 +126,10 @@ class HomeViewController: UIViewController{
       return
     }
 
-    let arr = cryptoData.filter { $0.currentValue < $0.previousValue }
+    let decreasingCryptos = cryptoData.filter { $0.currentValue < $0.previousValue }
       .map { $0.name }
-    .joined(separator: ", ")
-
-    self.view3TextLabel.text = arr
+      .joined(separator: ", ")
+    self.view3TextLabel.text = decreasingCryptos
   }
   
   @IBAction func switchPressed(_ sender: Any) {
