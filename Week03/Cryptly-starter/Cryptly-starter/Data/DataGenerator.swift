@@ -45,7 +45,6 @@ class DataGenerator {
                 let data = try Data(contentsOf: fileURL)
                 let decoder = JSONDecoder()
                 let decodedData = try decoder.decode([CryptoCurrency].self, from: data)
-//              print("decodedData: \(decodedData)")
                 return decodedData
             } catch let error {
                 print("Error in parsing \(error.localizedDescription)")

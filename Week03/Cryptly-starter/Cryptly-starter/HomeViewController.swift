@@ -108,6 +108,15 @@ class HomeViewController: UIViewController{
   }
   
   func setView2Data() {
+    guard  let cryptoData = cryptoData else {
+      return
+    }
+
+    let arr = cryptoData.filter { $0.currentValue > $0.previousValue }
+      .map { $0.name }
+    .joined(separator: ", ")
+
+    self.view2TextLabel.text = arr
   }
   
   func setView3Data() {
