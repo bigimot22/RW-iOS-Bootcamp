@@ -42,6 +42,8 @@ class HomeViewController: UIViewController{
   @IBOutlet weak var view2TextLabel: UILabel!
   @IBOutlet weak var view3TextLabel: UILabel!
   @IBOutlet weak var themeSwitch: UISwitch!
+
+  let cryptoData = DataGenerator.shared.generateData()
     
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -50,6 +52,7 @@ class HomeViewController: UIViewController{
     setView1Data()
     setView2Data()
     setView3Data()
+    print("cryptoData: \(cryptoData?.count ?? 0)")
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -94,6 +97,14 @@ class HomeViewController: UIViewController{
   }
   
   func setView1Data() {
+    if let data = cryptoData {
+      let namesArray = data.map { (crypto) -> String in
+        return String(crypto.name)
+      }.joined(separator: ", ")
+      self.view1TextLabel.text = namesArray
+    } else {
+      self.view1TextLabel.text = "Not data available."
+    }
   }
   
   func setView2Data() {
