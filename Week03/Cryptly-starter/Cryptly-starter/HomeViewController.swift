@@ -109,6 +109,7 @@ class HomeViewController: UIViewController{
   
   func setView2Data() {
     guard  let cryptoData = cryptoData else {
+      self.view2TextLabel.text = "Not data available."
       return
     }
 
@@ -120,6 +121,16 @@ class HomeViewController: UIViewController{
   }
   
   func setView3Data() {
+    guard  let cryptoData = cryptoData else {
+      self.view3TextLabel.text = "Not data available."
+      return
+    }
+
+    let arr = cryptoData.filter { $0.currentValue < $0.previousValue }
+      .map { $0.name }
+    .joined(separator: ", ")
+
+    self.view3TextLabel.text = arr
   }
   
   @IBAction func switchPressed(_ sender: Any) {

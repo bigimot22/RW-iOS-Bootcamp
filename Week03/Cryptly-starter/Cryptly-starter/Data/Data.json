@@ -31,4 +31,10 @@
   "symbol": "NXT",
   "currentValue": 39,
   "previousValue": 29
+},
+{
+  "name": "Demo",
+  "symbol": "DMO",
+  "currentValue": 99,
+  "previousValue": 99
 }]
