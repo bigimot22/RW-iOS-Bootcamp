@@ -13,6 +13,7 @@
 		185CB20323C78CE6009F7571 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185CB20123C78CE6009F7571 /* Main.storyboard */; };
 		185CB20523C78CE8009F7571 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 185CB20423C78CE8009F7571 /* Assets.xcassets */; };
 		69B70BA124965A7B00375880 /* MiniDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B70BA024965A7B00375880 /* MiniDisplayView.swift */; };
+		69B70BA32496662E00375880 /* Roundable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B70BA22496662E00375880 /* Roundable.swift */; };
 		69D06DE12496486B00B5758A /* DisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D06DE02496486B00B5758A /* DisplayView.swift */; };
 		A1F9E049249267DB00323226 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F9E048249267DB00323226 /* HomeViewController.swift */; };
 		A1F9E04B2492688C00323226 /* DataGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F9E04A2492688C00323226 /* DataGenerator.swift */; };
@@ -31,6 +32,7 @@
 		185CB20423C78CE8009F7571 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		185CB20923C78CE8009F7571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		69B70BA024965A7B00375880 /* MiniDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniDisplayView.swift; sourceTree = "<group>"; };
+		69B70BA22496662E00375880 /* Roundable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roundable.swift; sourceTree = "<group>"; };
 		69D06DE02496486B00B5758A /* DisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayView.swift; sourceTree = "<group>"; };
 		A1F9E048249267DB00323226 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A1F9E04A2492688C00323226 /* DataGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataGenerator.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				A1F9E04E249268D200323226 /* Model.swift */,
 				69D06DE02496486B00B5758A /* DisplayView.swift */,
 				69B70BA024965A7B00375880 /* MiniDisplayView.swift */,
+				69B70BA22496662E00375880 /* Roundable.swift */,
 				185CB20423C78CE8009F7571 /* Assets.xcassets */,
 				180DC61423C78D9800486B1A /* LaunchScreen.storyboard */,
 				185CB20923C78CE8009F7571 /* Info.plist */,
@@ -203,6 +206,7 @@
 				185CB1FC23C78CE6009F7571 /* AppDelegate.swift in Sources */,
 				69B70BA124965A7B00375880 /* MiniDisplayView.swift in Sources */,
 				185CB1FE23C78CE6009F7571 /* SceneDelegate.swift in Sources */,
+				69B70BA32496662E00375880 /* Roundable.swift in Sources */,
 				A1F9E049249267DB00323226 /* HomeViewController.swift in Sources */,
 				A1F9E04B2492688C00323226 /* DataGenerator.swift in Sources */,
 				69D06DE12496486B00B5758A /* DisplayView.swift in Sources */,

@@ -32,26 +32,24 @@
 
 import UIKit
 
-class DisplayView: UIView, Roundable {
-  @IBOutlet private weak var label: UILabel!
+protocol Roundable: UIView {
+  var cornerRadius: CGFloat { get set }
+  func round(by amount: CGFloat)
+}
 
-  func configure(backgroundColor: UIColor, borderColor: UIColor, textColor: UIColor) {
-    self.backgroundColor = backgroundColor
-    self.layer.borderColor = borderColor.cgColor
-    self.label.textColor = textColor
-    self.label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
-    self.layer.borderWidth = 1.0
-    self.layer.shadowColor = UIColor.systemGray2.withAlphaComponent(0.5).cgColor
-    self.layer.shadowOffset = CGSize(width: 0, height: 2)
-    self.layer.shadowRadius = 4
-    self.layer.shadowOpacity = 0.8
-    self.layer.cornerRadius = self.cornerRadius
+extension Roundable {
+  var cornerRadius: CGFloat {
+    get {
+      return 10.0
+    }
+    set {
+      print("New cornerRadius is \(newValue)")
+    }
   }
 
-  func setText(text: String) {
-    self.label.text = text
+  func round(by amount: CGFloat = 10.0) {
+    cornerRadius = amount
   }
-
 }
 
 
