@@ -44,45 +44,61 @@ class HomeViewController: UIViewController{
   @IBOutlet weak var themeSwitch: UISwitch!
 
   let cryptoData = DataGenerator.shared.generateData()
+  var currentTheme: Theme! // = LightTheme()
     
   override func viewDidLoad() {
     super.viewDidLoad()
+    fetchCurrentTheme()
     setupViews()
     setupLabels()
     setView1Data()
     setView2Data()
     setView3Data()
     print("cryptoData: \(cryptoData?.count ?? 0)")
+
+
+
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    registerForTheme()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
+    unregisterForTheme()
+  }
+
+  func fetchCurrentTheme() {
+    if let savedTheme = ThemeManager.shared.currentTheme {
+      currentTheme = savedTheme
+    } else {
+      print("Cannot fetch saved theme: \(String(describing: ThemeManager.shared.currentTheme))")
+      currentTheme = LightTheme()
+    }
   }
 
   func setupViews() {
-      
-    view1.backgroundColor = .systemGray6
-    view1.layer.borderColor = UIColor.lightGray.cgColor
+    view.backgroundColor = currentTheme.backgroundColor
+    view1.backgroundColor = currentTheme.widgetBackgroundColor
+    view1.layer.borderColor = currentTheme.borderColor.cgColor
     view1.layer.borderWidth = 1.0
     view1.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
     view1.layer.shadowOffset = CGSize(width: 0, height: 2)
     view1.layer.shadowRadius = 4
     view1.layer.shadowOpacity = 0.8
     
-    view2.backgroundColor = .systemGray6
-    view2.layer.borderColor = UIColor.lightGray.cgColor
+    view2.backgroundColor = currentTheme.widgetBackgroundColor
+    view2.layer.borderColor = currentTheme.borderColor.cgColor
     view2.layer.borderWidth = 1.0
     view2.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
     view2.layer.shadowOffset = CGSize(width: 0, height: 2)
     view2.layer.shadowRadius = 4
     view2.layer.shadowOpacity = 0.8
     
-    view3.backgroundColor = .systemGray6
-    view3.layer.borderColor = UIColor.lightGray.cgColor
+    view3.backgroundColor = currentTheme.widgetBackgroundColor
+    view3.layer.borderColor = currentTheme.borderColor.cgColor
     view3.layer.borderWidth = 1.0
     view3.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
     view3.layer.shadowOffset = CGSize(width: 0, height: 2)
@@ -92,8 +108,13 @@ class HomeViewController: UIViewController{
   
   func setupLabels() {
     headingLabel.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+    headingLabel.textColor = currentTheme.textColor
     view1TextLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+    view1TextLabel.textColor = currentTheme.textColor
     view2TextLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+    view2TextLabel.textColor = currentTheme.textColor
+    view3TextLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+    view3TextLabel.textColor = currentTheme.textColor
   }
   
   func setView1Data() {
@@ -132,6 +153,36 @@ class HomeViewController: UIViewController{
     self.view3TextLabel.text = decreasingCryptos
   }
   
-  @IBAction func switchPressed(_ sender: Any) {
+  @IBAction func switchPressed(_ sender: UISwitch) {
+    print("sender: \(sender.isOn)")
+    if sender.isOn {
+      ThemeManager.shared.set(theme: DarkTheme())
+    } else {
+      ThemeManager.shared.set(theme: LightTheme())
+    }
   }
+}
+
+
+
+extension HomeViewController: Themeable {
+  func registerForTheme() {
+    NotificationCenter.default.addObserver(self, selector: #selector(themeChanged), name: Notification.Name("themeChanged"), object: nil)
+  }
+
+  func unregisterForTheme() {
+    NotificationCenter.default.removeObserver(self)
+  }
+
+  @objc func themeChanged() {
+    print("Got notification for theme changes ...")
+    fetchCurrentTheme()
+    UIView.animate(withDuration: 0.5) {
+      self.setupViews()
+      self.setupLabels()
+    }
+
+  }
+
+
 }
