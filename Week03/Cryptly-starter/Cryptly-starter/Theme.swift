@@ -32,6 +32,13 @@
 
 import UIKit
 
+
+protocol Themeable {
+  func registerForTheme()
+  func unregisterForTheme()
+  func themeChanged()
+}
+
 protocol Theme {
   var backgroundColor: UIColor { get }
   var textColor: UIColor { get }
@@ -51,11 +58,4 @@ class DarkTheme: Theme {
   var textColor: UIColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
   var borderColor: UIColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
   var widgetBackgroundColor: UIColor = #colorLiteral(red: 0.2605174184, green: 0.2605243921, blue: 0.260520637, alpha: 1)
-}
-
-
-protocol Themeable {
-  func registerForTheme()
-  func unregisterForTheme()
-  func themeChanged()
 }

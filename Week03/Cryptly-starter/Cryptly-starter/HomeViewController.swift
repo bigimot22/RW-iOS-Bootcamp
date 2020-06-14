@@ -45,7 +45,7 @@ class HomeViewController: UIViewController{
 
   let cryptoData = DataGenerator.shared.generateData()
   var currentTheme: Theme! // = LightTheme()
-    
+
   override func viewDidLoad() {
     super.viewDidLoad()
     fetchCurrentTheme()
@@ -55,9 +55,6 @@ class HomeViewController: UIViewController{
     setView2Data()
     setView3Data()
     print("cryptoData: \(cryptoData?.count ?? 0)")
-
-
-
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -74,13 +71,13 @@ class HomeViewController: UIViewController{
     if let savedTheme = ThemeManager.shared.currentTheme {
       currentTheme = savedTheme
     } else {
-      print("Cannot fetch saved theme: \(String(describing: ThemeManager.shared.currentTheme))")
       currentTheme = LightTheme()
     }
   }
 
   func setupViews() {
     view.backgroundColor = currentTheme.backgroundColor
+
     view1.backgroundColor = currentTheme.widgetBackgroundColor
     view1.layer.borderColor = currentTheme.borderColor.cgColor
     view1.layer.borderWidth = 1.0
@@ -154,7 +151,6 @@ class HomeViewController: UIViewController{
   }
   
   @IBAction func switchPressed(_ sender: UISwitch) {
-    print("sender: \(sender.isOn)")
     if sender.isOn {
       ThemeManager.shared.set(theme: DarkTheme())
     } else {
@@ -175,7 +171,6 @@ extension HomeViewController: Themeable {
   }
 
   @objc func themeChanged() {
-    print("Got notification for theme changes ...")
     fetchCurrentTheme()
     UIView.animate(withDuration: 0.5) {
       self.setupViews()
