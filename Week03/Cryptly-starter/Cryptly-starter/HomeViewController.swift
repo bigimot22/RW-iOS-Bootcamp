@@ -37,6 +37,8 @@ class HomeViewController: UIViewController{
   @IBOutlet private weak var view1: DisplayView!
   @IBOutlet private weak var view2: DisplayView!
   @IBOutlet private weak var view3: DisplayView!
+  @IBOutlet private weak var fallingView: DisplayView!
+  @IBOutlet private weak var IncreasingView: MiniDisplayView!
   @IBOutlet private weak var headingLabel: UILabel!
   @IBOutlet private weak var themeSwitch: UISwitch!
 
@@ -51,6 +53,8 @@ class HomeViewController: UIViewController{
     setView1Data()
     setView2Data()
     setView3Data()
+    setFallingViewData()
+    setIncreasingViewData()
 
   }
   
@@ -80,6 +84,10 @@ class HomeViewController: UIViewController{
     view2.configure(backgroundColor: currentTheme.widgetBackgroundColor, borderColor: currentTheme.borderColor, textColor: currentTheme.textColor)
 
     view3.configure(backgroundColor: currentTheme.widgetBackgroundColor, borderColor: currentTheme.borderColor, textColor: currentTheme.textColor)
+
+    fallingView.configure(backgroundColor: currentTheme.widgetBackgroundColor, borderColor: currentTheme.borderColor, textColor: currentTheme.textColor)
+
+    IncreasingView.configure(backgroundColor: currentTheme.widgetBackgroundColor, borderColor: currentTheme.borderColor, textColor: currentTheme.textColor)
   }
   
   func setupLabels() {
@@ -121,6 +129,24 @@ class HomeViewController: UIViewController{
       .map { $0.name }
       .joined(separator: ", ")
     view3.setText(text: decreasingCryptos)
+  }
+
+  func setFallingViewData() {
+    guard  let cryptoData = cryptoData else {
+      fallingView.setText(text: "N/A")
+      return
+    }
+    let falling = cryptoData.map { $0.currentValue - $0.previousValue}.min()
+    fallingView.setText(text: String(falling?.description ?? "--"))
+  }
+
+  func setIncreasingViewData() {
+    guard  let cryptoData = cryptoData else {
+      IncreasingView.setText(text: "N/A")
+      return
+    }
+    let increase = cryptoData.map { $0.currentValue - $0.previousValue}.max()
+    IncreasingView.setText(text: String(increase?.description ?? "--"))
   }
   
   @IBAction func switchPressed(_ sender: UISwitch) {
