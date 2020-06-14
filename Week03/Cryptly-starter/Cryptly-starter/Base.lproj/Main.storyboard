@@ -108,7 +108,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="2w7-La-t7s">
                                         <rect key="frame" x="0.0" y="596.66666666666663" width="374" height="137.33333333333337"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aiy-Ih-0S6" customClass="DisplayView" customModule="Cryptly_starter" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aiy-Ih-0S6" customClass="MiniDisplayView" customModule="Cryptly_starter" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="181" height="137.33333333333334"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Most Falling" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vmj-Y3-aaQ" userLabel="TitleLabel">
@@ -139,6 +139,7 @@
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="label" destination="GK6-Lg-XPY" id="s3n-lV-pcW"/>
+                                                    <outlet property="titleLabel" destination="Vmj-Y3-aaQ" id="Qtd-8M-NjU"/>
                                                 </connections>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKN-gR-gAX" customClass="MiniDisplayView" customModule="Cryptly_starter" customModuleProvider="target">
