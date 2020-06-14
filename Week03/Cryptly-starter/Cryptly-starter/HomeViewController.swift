@@ -34,17 +34,14 @@ import UIKit
 
 class HomeViewController: UIViewController{
 
-  @IBOutlet weak var view1: UIView!
-  @IBOutlet weak var view2: UIView!
-  @IBOutlet weak var view3: UIView!
-  @IBOutlet weak var headingLabel: UILabel!
-  @IBOutlet weak var view1TextLabel: UILabel!
-  @IBOutlet weak var view2TextLabel: UILabel!
-  @IBOutlet weak var view3TextLabel: UILabel!
-  @IBOutlet weak var themeSwitch: UISwitch!
+  @IBOutlet private weak var view1: DisplayView!
+  @IBOutlet private weak var view2: DisplayView!
+  @IBOutlet private weak var view3: DisplayView!
+  @IBOutlet private weak var headingLabel: UILabel!
+  @IBOutlet private weak var themeSwitch: UISwitch!
 
-  let cryptoData = DataGenerator.shared.generateData()
-  var currentTheme: Theme! // = LightTheme()
+  private let cryptoData = DataGenerator.shared.generateData()
+  private var currentTheme: Theme!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -54,7 +51,7 @@ class HomeViewController: UIViewController{
     setView1Data()
     setView2Data()
     setView3Data()
-    print("cryptoData: \(cryptoData?.count ?? 0)")
+
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -76,78 +73,54 @@ class HomeViewController: UIViewController{
   }
 
   func setupViews() {
-    view.backgroundColor = currentTheme.backgroundColor
+    self.view.backgroundColor = currentTheme.backgroundColor
+    
+    view1.configure(backgroundColor: currentTheme.widgetBackgroundColor, borderColor: currentTheme.borderColor, textColor: currentTheme.textColor)
 
-    view1.backgroundColor = currentTheme.widgetBackgroundColor
-    view1.layer.borderColor = currentTheme.borderColor.cgColor
-    view1.layer.borderWidth = 1.0
-    view1.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
-    view1.layer.shadowOffset = CGSize(width: 0, height: 2)
-    view1.layer.shadowRadius = 4
-    view1.layer.shadowOpacity = 0.8
-    
-    view2.backgroundColor = currentTheme.widgetBackgroundColor
-    view2.layer.borderColor = currentTheme.borderColor.cgColor
-    view2.layer.borderWidth = 1.0
-    view2.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
-    view2.layer.shadowOffset = CGSize(width: 0, height: 2)
-    view2.layer.shadowRadius = 4
-    view2.layer.shadowOpacity = 0.8
-    
-    view3.backgroundColor = currentTheme.widgetBackgroundColor
-    view3.layer.borderColor = currentTheme.borderColor.cgColor
-    view3.layer.borderWidth = 1.0
-    view3.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
-    view3.layer.shadowOffset = CGSize(width: 0, height: 2)
-    view3.layer.shadowRadius = 4
-    view3.layer.shadowOpacity = 0.8
+    view2.configure(backgroundColor: currentTheme.widgetBackgroundColor, borderColor: currentTheme.borderColor, textColor: currentTheme.textColor)
+
+    view3.configure(backgroundColor: currentTheme.widgetBackgroundColor, borderColor: currentTheme.borderColor, textColor: currentTheme.textColor)
   }
   
   func setupLabels() {
     headingLabel.font = UIFont.systemFont(ofSize: 20, weight: .medium)
     headingLabel.textColor = currentTheme.textColor
-    view1TextLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
-    view1TextLabel.textColor = currentTheme.textColor
-    view2TextLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
-    view2TextLabel.textColor = currentTheme.textColor
-    view3TextLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
-    view3TextLabel.textColor = currentTheme.textColor
   }
   
   func setView1Data() {
     guard  let cryptoData = cryptoData else {
-      self.view1TextLabel.text = "Not data available."
+      view1.setText(text: "Not data available.")
       return
     }
 
     let allCryptos = cryptoData.map { $0.name }
       .joined(separator: ", ")
-    self.view1TextLabel.text = allCryptos
+    view1.setText(text: allCryptos)
   }
 
   
   func setView2Data() {
     guard  let cryptoData = cryptoData else {
-      self.view2TextLabel.text = "Not data available."
+      view2.setText(text: "Not data available.")
       return
     }
 
     let increasingCryptos = cryptoData.filter { $0.currentValue > $0.previousValue }
       .map { $0.name }
       .joined(separator: ", ")
-    self.view2TextLabel.text = increasingCryptos
+    view2.setText(text: increasingCryptos)
   }
   
   func setView3Data() {
     guard  let cryptoData = cryptoData else {
-      self.view3TextLabel.text = "Not data available."
+      view3.setText(text: "Not data available.")
       return
     }
 
     let decreasingCryptos = cryptoData.filter { $0.currentValue < $0.previousValue }
       .map { $0.name }
       .joined(separator: ", ")
-    self.view3TextLabel.text = decreasingCryptos
+    view3.setText(text: decreasingCryptos)
   }
   
   @IBAction func switchPressed(_ sender: UISwitch) {
@@ -158,6 +131,7 @@ class HomeViewController: UIViewController{
     }
   }
 }
+
 
 
 

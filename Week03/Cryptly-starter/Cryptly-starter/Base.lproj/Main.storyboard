@@ -39,7 +39,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4oo-MW-3FZ">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4oo-MW-3FZ" customClass="DisplayView" customModule="Cryptly_starter" customModuleProvider="target">
                                 <rect key="frame" x="20" y="189" width="374" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="2pP-O3-GIK">
@@ -57,8 +57,11 @@
                                     <constraint firstItem="2pP-O3-GIK" firstAttribute="leading" secondItem="4oo-MW-3FZ" secondAttribute="leading" constant="20" id="kqZ-7S-eKw"/>
                                     <constraint firstAttribute="trailing" secondItem="2pP-O3-GIK" secondAttribute="trailing" constant="20" id="sqv-6S-XbB"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="label" destination="2pP-O3-GIK" id="J8b-QX-u2X"/>
+                                </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DpI-h7-D97">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DpI-h7-D97" customClass="DisplayView" customModule="Cryptly_starter" customModuleProvider="target">
                                 <rect key="frame" x="20" y="329" width="374" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="tPy-T8-YB9">
@@ -76,8 +79,11 @@
                                     <constraint firstAttribute="height" constant="120" id="f5J-mZ-3FK"/>
                                     <constraint firstItem="tPy-T8-YB9" firstAttribute="leading" secondItem="DpI-h7-D97" secondAttribute="leading" constant="20" id="mZE-Af-Pi5"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="label" destination="tPy-T8-YB9" id="nZY-dM-yLK"/>
+                                </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNM-6D-sSb">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNM-6D-sSb" customClass="DisplayView" customModule="Cryptly_starter" customModuleProvider="target">
                                 <rect key="frame" x="20" y="469" width="374" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="UCh-Bb-EWS">
@@ -95,6 +101,9 @@
                                     <constraint firstAttribute="bottom" secondItem="UCh-Bb-EWS" secondAttribute="bottom" constant="20" id="i6d-aW-V9D"/>
                                     <constraint firstItem="UCh-Bb-EWS" firstAttribute="top" secondItem="DNM-6D-sSb" secondAttribute="top" constant="20" id="yJk-b2-7eV"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="label" destination="UCh-Bb-EWS" id="9Sq-O7-aBt"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -129,11 +138,8 @@
                         <outlet property="headingLabel" destination="zrp-g0-HX2" id="CEx-vX-zmI"/>
                         <outlet property="themeSwitch" destination="kW6-Ms-UCP" id="Vpv-W6-XtS"/>
                         <outlet property="view1" destination="4oo-MW-3FZ" id="7mY-sa-8ZH"/>
-                        <outlet property="view1TextLabel" destination="2pP-O3-GIK" id="L2m-KB-P6Q"/>
                         <outlet property="view2" destination="DpI-h7-D97" id="Y0z-cT-8qw"/>
-                        <outlet property="view2TextLabel" destination="tPy-T8-YB9" id="VJN-xd-312"/>
                         <outlet property="view3" destination="DNM-6D-sSb" id="vA8-mC-2c7"/>
-                        <outlet property="view3TextLabel" destination="UCh-Bb-EWS" id="8RB-Dk-G3v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="szC-q4-zjU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
