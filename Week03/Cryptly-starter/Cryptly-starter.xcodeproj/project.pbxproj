@@ -74,21 +74,44 @@
 		185CB1FA23C78CE6009F7571 /* Cryptly-starter */ = {
 			isa = PBXGroup;
 			children = (
-				A1F9E0552492697800323226 /* ThemeManager */,
-				A1F9E0542492696200323226 /* Data */,
 				185CB1FB23C78CE6009F7571 /* AppDelegate.swift */,
 				185CB1FD23C78CE6009F7571 /* SceneDelegate.swift */,
-				A1F9E048249267DB00323226 /* HomeViewController.swift */,
-				185CB20123C78CE6009F7571 /* Main.storyboard */,
-				A1F9E04E249268D200323226 /* Model.swift */,
-				69D06DE02496486B00B5758A /* DisplayView.swift */,
-				69B70BA024965A7B00375880 /* MiniDisplayView.swift */,
-				69B70BA22496662E00375880 /* Roundable.swift */,
+				A1F9E0542492696200323226 /* Data */,
+				A1F9E0552492697800323226 /* ThemeManager */,
+				69E1C08124967BD700D29384 /* Models */,
+				69E1C08224967C0400D29384 /* Views */,
+				69E1C08324967C1B00D29384 /* Controllers */,
 				185CB20423C78CE8009F7571 /* Assets.xcassets */,
+				185CB20123C78CE6009F7571 /* Main.storyboard */,
 				180DC61423C78D9800486B1A /* LaunchScreen.storyboard */,
 				185CB20923C78CE8009F7571 /* Info.plist */,
 			);
 			path = "Cryptly-starter";
+			sourceTree = "<group>";
+		};
+		69E1C08124967BD700D29384 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A1F9E04E249268D200323226 /* Model.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		69E1C08224967C0400D29384 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				69D06DE02496486B00B5758A /* DisplayView.swift */,
+				69B70BA024965A7B00375880 /* MiniDisplayView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		69E1C08324967C1B00D29384 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A1F9E048249267DB00323226 /* HomeViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		A1F9E0542492696200323226 /* Data */ = {
@@ -105,6 +128,7 @@
 			children = (
 				A1F9E0502492690000323226 /* ThemeManager.swift */,
 				A1F9E0522492690B00323226 /* Theme.swift */,
+				69B70BA22496662E00375880 /* Roundable.swift */,
 			);
 			path = ThemeManager;
 			sourceTree = "<group>";
