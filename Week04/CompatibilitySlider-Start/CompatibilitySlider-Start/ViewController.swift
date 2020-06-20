@@ -23,6 +23,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+      questionLabel.text = "User 1, what do you think about..."
+      compatibilityItemLabel.text = "\(compatibilityItems[0])"
     }
 
     @IBAction func sliderValueChanged(_ sender: UISlider) {
