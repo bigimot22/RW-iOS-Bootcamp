@@ -23,16 +23,60 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-      questionLabel.text = "User 1, what do you think about..."
-      compatibilityItemLabel.text = "\(compatibilityItems[0])"
+//      currentPerson = person1
+//      setTitle(personNumber: currentPerson!.id)
+//      compatibilityItemLabel.text = "\(compatibilityItems[0])"
+      setToInitialValues()
     }
 
     @IBAction func sliderValueChanged(_ sender: UISlider) {
         print(sender.value)
     }
 
-    @IBAction func didPressNextItemButton(_ sender: Any) {
+  @IBAction func didPressNextItemButton(_ sender: Any) {
+    print("didPressNextItemButton currentItem: \(compatibilityItems[currentItemIndex])")
+    let currentItem = compatibilityItems[currentItemIndex]
+    currentPerson?.items.updateValue(slider.value, forKey: currentItem)
+
+    currentItemIndex += 1
+    if currentItemIndex >= compatibilityItems.count {
+      if currentPerson == person2 {
+        showResult()
+      } else {
+        currentPerson = person2
+        setTitle(personNumber: currentPerson!.id)
+        currentItemIndex = 0
+        compatibilityItemLabel.text = "\(compatibilityItems[currentItemIndex])"
+      }
+    } else {
+      compatibilityItemLabel.text = "\(compatibilityItems[currentItemIndex])"
     }
+
+
+
+  }
+
+  private func setToInitialValues() {
+    currentPerson = person1
+    setTitle(personNumber: currentPerson!.id)
+    currentItemIndex = 0
+    compatibilityItemLabel.text = "\(compatibilityItems[currentItemIndex])"
+    slider.value = 0.5
+  }
+
+  private func setTitle(personNumber: Int) {
+    questionLabel.text = "Person \(personNumber), what do you think about..."
+  }
+
+  private func showResult() {
+    let score = calculateCompatibility()
+    let alert = UIAlertController(title: "Results", message: "You both are \(score) compatible!", preferredStyle: .alert)
+    let action = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
+      self.setToInitialValues()
+    })
+    alert.addAction(action)
+    present(alert, animated: true)
+  }
 
     func calculateCompatibility() -> String {
         // If diff 0.0 is 100% and 5.0 is 0%, calculate match percentage
