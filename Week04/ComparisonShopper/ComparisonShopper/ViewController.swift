@@ -39,15 +39,24 @@ class ViewController: UIViewController {
   }
 
   func setUpRightSideUI() {
+    switchHouse2UI()
+    guard let house2 = house2 else { return }
+    titleLabelRight.text! = house2.address!
+    priceLabelRight.text! = house2.price!
+    roomLabelRight.text! = house2.bedrooms!
+  }
+
+  private func switchHouse2UI() {
     if house2 == nil {
       titleLabelRight.alpha = 0
       imageViewRight.alpha = 0
       priceLabelRight.alpha = 0
       roomLabelRight.alpha = 0
     } else {
-      titleLabelRight.text! = house2!.address!
-      priceLabelRight.text! = house2!.price!
-      roomLabelRight.text! = house2!.bedrooms!
+      titleLabelRight.alpha = 1
+      imageViewRight.alpha = 1
+      priceLabelRight.alpha = 1
+      roomLabelRight.alpha = 1
     }
   }
 
