@@ -27,7 +27,7 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    house1 = House(address: "", price: "$12,000", bedrooms: "3 bedrooms")
+    house1 = House(address: "SF", price: "$12,000", bedrooms: "3 bedrooms")
     setUpLeftSideUI()
     setUpRightSideUI()
   }
