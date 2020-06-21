@@ -5,5 +5,5 @@
 
 Build it specifically for assigment 04 of the RW iOS Bootcamp at https://www.raywenderlich.com/10529048-ios-bootcamp.
 
-<img src="Screenshots/compatibility-slider-hor.png" width="600">
+<img src="Screenshots/compatibility-slider-hr.png" width="600">
 <img src="Screenshots/compatibility-slider.png" width="300">
