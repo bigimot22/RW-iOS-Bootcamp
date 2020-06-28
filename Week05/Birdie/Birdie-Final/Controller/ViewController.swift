@@ -13,17 +13,25 @@ class ViewController: UIViewController {
   @IBOutlet weak var tableview: UITableView!
 
   var datasource: MediaPostsHandler!
+  private let picker = UIImagePickerController()
   private var pickedImage: UIImage?
 
   override func viewDidLoad() {
     super.viewDidLoad()
     datasource = MediaPostsHandler.shared
     setUpTableView()
+    setUpImagePicker()
   }
 
-  func setUpTableView() {
+  private func setUpTableView() {
     tableview.dataSource = self
     tableview.delegate = self
+  }
+
+  private func setUpImagePicker() {
+    picker.delegate = self
+    picker.allowsEditing = false
+    picker.sourceType = .photoLibrary
   }
 
   @IBAction func didPressCreateTextPostButton(_ sender: Any) {
@@ -32,11 +40,7 @@ class ViewController: UIViewController {
   }
 
   @IBAction func didPressCreateImagePostButton(_ sender: Any) {
-    let picker = UIImagePickerController()
-    picker.delegate = self
     if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-      picker.allowsEditing = false
-      picker.sourceType = .photoLibrary
       present(picker, animated: true, completion: nil)
     }
   }
@@ -45,28 +49,28 @@ class ViewController: UIViewController {
   private func showMessageInputFields() {
     let alert = UIAlertController(title: "What's up? :]", message: nil, preferredStyle: .alert)
 
-        alert.addTextField { (textField) in
-          textField.placeholder = "Your Name"
-          textField.autocapitalizationType = .sentences
-        }
-        alert.addTextField { (textField) in
-          textField.placeholder = "Your Message..."
-          textField.autocapitalizationType = .sentences
-          textField.autocorrectionType = .yes
-        }
+    alert.addTextField { (textField) in
+      textField.placeholder = "Your Name"
+      textField.autocapitalizationType = .sentences
+    }
+    alert.addTextField { (textField) in
+      textField.placeholder = "Your Message..."
+      textField.autocapitalizationType = .sentences
+      textField.autocorrectionType = .yes
+    }
 
-        alert.addAction(UIAlertAction(title: "Send", style: .default) { (action) in
-          let name = alert.textFields?[0].text ?? ""
-          let message = alert.textFields?[1].text ?? ""
-          if name.isEmpty || message.isEmpty {
-            return
-          }
-          self.publishPost(sender: name, message: message, image: self.pickedImage)
-        })
+    alert.addAction(UIAlertAction(title: "Send", style: .default) { (action) in
+      let name = alert.textFields?[0].text ?? ""
+      let message = alert.textFields?[1].text ?? ""
+      if name.isEmpty || message.isEmpty {
+        return
+      }
+      self.publishPost(sender: name, message: message, image: self.pickedImage)
+    })
 
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
 
-        present(alert, animated: true)
+    present(alert, animated: true)
   }
 
   private func publishPost(sender: String, message: String, image: UIImage?) {
@@ -112,7 +116,9 @@ extension ViewController: UITableViewDataSource {
 
 
 extension ViewController: UITableViewDelegate {
-
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+  }
 }
 
 
