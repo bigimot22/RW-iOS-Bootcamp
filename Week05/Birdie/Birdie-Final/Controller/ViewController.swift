@@ -10,29 +10,32 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var tableview: UITableView!
+  @IBOutlet weak var tableview: UITableView!
 
   var datasource: MediaPostsHandler!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      datasource = MediaPostsHandler.shared
-        setUpTableView()
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    datasource = MediaPostsHandler.shared
+    setUpTableView()
+  }
 
-    func setUpTableView() {
-      tableview.dataSource = self
-      tableview.delegate = self
-    }
+  func setUpTableView() {
+    tableview.dataSource = self
+    tableview.delegate = self
+  }
 
   @IBAction func didPressCreateTextPostButton(_ sender: Any) {
     let alert = UIAlertController(title: "What's up? :]", message: nil, preferredStyle: .alert)
 
     alert.addTextField { (textField) in
       textField.placeholder = "Your Name"
+      textField.autocapitalizationType = .sentences
     }
     alert.addTextField { (textField) in
       textField.placeholder = "Your Message..."
+      textField.autocapitalizationType = .sentences
+      textField.autocorrectionType = .yes
     }
 
     alert.addAction(UIAlertAction(title: "Send", style: .default) { (action) in
@@ -54,9 +57,9 @@ class ViewController: UIViewController {
     present(alert, animated: true)
   }
 
-    @IBAction func didPressCreateImagePostButton(_ sender: Any) {
+  @IBAction func didPressCreateImagePostButton(_ sender: Any) {
 
-    }
+  }
 
 }
 
