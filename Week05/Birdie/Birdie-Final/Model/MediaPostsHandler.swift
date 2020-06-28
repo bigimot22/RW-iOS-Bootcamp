@@ -12,7 +12,10 @@ class MediaPostsHandler: NSObject {
     static let shared = MediaPostsHandler()
     var mediaPosts: [MediaPost] = []
 
-    private override init() {}
+    private override init() {
+      super.init()
+      self.getPosts()
+  }
 
     func getPosts() {
         let imagePost1 = ImagePost(textBody: "I love debugging software!", userName: "Jay", timestamp: Date(timeIntervalSince1970: 10000), image: UIImage(named: "chop")!)
