@@ -21,14 +21,38 @@ class ViewController: UIViewController {
     }
 
     func setUpTableView() {
-        // Set delegates, register custom cells, set up datasource, etc.
       tableview.dataSource = self
       tableview.delegate = self
     }
 
-    @IBAction func didPressCreateTextPostButton(_ sender: Any) {
+  @IBAction func didPressCreateTextPostButton(_ sender: Any) {
+    let alert = UIAlertController(title: "What's up? :]", message: nil, preferredStyle: .alert)
 
+    alert.addTextField { (textField) in
+      textField.placeholder = "Your Name"
     }
+    alert.addTextField { (textField) in
+      textField.placeholder = "Your Message..."
+    }
+
+    alert.addAction(UIAlertAction(title: "Send", style: .default) { (action) in
+      let name = alert.textFields?[0].text ?? ""
+      let message = alert.textFields?[1].text ?? ""
+      if name.isEmpty || message.isEmpty {
+        return
+      }
+
+      let post = TextPost(textBody: message, userName: name, timestamp: Date())
+      self.datasource.addTextPost(textPost: post)
+      DispatchQueue.main.async {
+        self.tableview.reloadData()
+      }
+    })
+
+    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+
+    present(alert, animated: true)
+  }
 
     @IBAction func didPressCreateImagePostButton(_ sender: Any) {
 
