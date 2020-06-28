@@ -13,6 +13,7 @@ class ViewController: UIViewController {
   @IBOutlet weak var tableview: UITableView!
 
   var datasource: MediaPostsHandler!
+  private var pickedImage: UIImage?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,42 +27,64 @@ class ViewController: UIViewController {
   }
 
   @IBAction func didPressCreateTextPostButton(_ sender: Any) {
-    let alert = UIAlertController(title: "What's up? :]", message: nil, preferredStyle: .alert)
-
-    alert.addTextField { (textField) in
-      textField.placeholder = "Your Name"
-      textField.autocapitalizationType = .sentences
-    }
-    alert.addTextField { (textField) in
-      textField.placeholder = "Your Message..."
-      textField.autocapitalizationType = .sentences
-      textField.autocorrectionType = .yes
-    }
-
-    alert.addAction(UIAlertAction(title: "Send", style: .default) { (action) in
-      let name = alert.textFields?[0].text ?? ""
-      let message = alert.textFields?[1].text ?? ""
-      if name.isEmpty || message.isEmpty {
-        return
-      }
-
-      let post = TextPost(textBody: message, userName: name, timestamp: Date())
-      self.datasource.addTextPost(textPost: post)
-      DispatchQueue.main.async {
-        self.tableview.reloadData()
-      }
-    })
-
-    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
-
-    present(alert, animated: true)
+    pickedImage = nil
+    showMessageInputFields()
   }
 
   @IBAction func didPressCreateImagePostButton(_ sender: Any) {
+    let picker = UIImagePickerController()
+    picker.delegate = self
+    if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+      picker.allowsEditing = false
+      picker.sourceType = .photoLibrary
+      present(picker, animated: true, completion: nil)
+    }
+  }
 
+
+  private func showMessageInputFields() {
+    let alert = UIAlertController(title: "What's up? :]", message: nil, preferredStyle: .alert)
+
+        alert.addTextField { (textField) in
+          textField.placeholder = "Your Name"
+          textField.autocapitalizationType = .sentences
+        }
+        alert.addTextField { (textField) in
+          textField.placeholder = "Your Message..."
+          textField.autocapitalizationType = .sentences
+          textField.autocorrectionType = .yes
+        }
+
+        alert.addAction(UIAlertAction(title: "Send", style: .default) { (action) in
+          let name = alert.textFields?[0].text ?? ""
+          let message = alert.textFields?[1].text ?? ""
+          if name.isEmpty || message.isEmpty {
+            return
+          }
+          self.publishPost(sender: name, message: message, image: self.pickedImage)
+        })
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+
+        present(alert, animated: true)
+  }
+
+  private func publishPost(sender: String, message: String, image: UIImage?) {
+    if let image = image {
+      let post = ImagePost(textBody: message, userName: sender, timestamp: Date(), image: image)
+      self.datasource.addImagePost(imagePost: post)
+    } else {
+      let post = TextPost(textBody: message, userName: sender, timestamp: Date())
+      self.datasource.addTextPost(textPost: post)
+    }
+    DispatchQueue.main.async {
+      self.tableview.reloadData()
+    }
   }
 
 }
+
+
 
 extension ViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -90,6 +113,18 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController: UITableViewDelegate {
 
+}
+
+
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    if let image = info [UIImagePickerController.InfoKey.originalImage] {
+      pickedImage = image as? UIImage
+      dismiss(animated: true) {
+        self.showMessageInputFields()
+      }
+    }
+  }
 }
 
 
