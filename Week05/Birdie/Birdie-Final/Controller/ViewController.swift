@@ -4,6 +4,7 @@
 //
 //  Created by Jay Strawn on 6/18/20.
 //  Copyright © 2020 Jay Strawn. All rights reserved.
+// Updated by Johandre Delgado
 //
 
 import UIKit
@@ -100,24 +101,9 @@ extension ViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let model = datasource.mediaPosts[indexPath.row]
-//    let viewmodel = PostViewmodel()
-    let cell2 = viewmodel.setUpTableViewCell(for: model, in: tableView)
-    return cell2
-
-//    if let textPost = model as? TextPost {
-//      let cell = tableView.dequeueReusableCell(withIdentifier: "postcell") as! PostCell
-//      cell.configure(with: textPost)
-//      return cell
-//    } else if let imagePost = model as? ImagePost {
-//      let cell = tableView.dequeueReusableCell(withIdentifier: "imagecell") as! ImagePostCell
-//      cell.configure(with: model, image: imagePost.image)
-//      return cell
-//    }
-//
-//    return UITableViewCell.init()
+    let cell = viewmodel.setUpTableViewCell(for: model, in: tableView)
+    return cell
   }
-
-
 }
 
 
