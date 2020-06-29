@@ -101,7 +101,7 @@ extension ViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let model = datasource.mediaPosts[indexPath.row]
-    let cell = viewmodel.setUpTableViewCell(for: model, in: tableView)
+    let cell = viewmodel.getTableViewCell(for: model, in: tableView)
     return cell
   }
 }

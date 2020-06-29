@@ -10,7 +10,7 @@ import UIKit
 
 class PostViewmodel {
 
-  func setUpTableViewCell(for model: MediaPost, in tableview: UITableView) -> UITableViewCell {
+  func getTableViewCell(for model: MediaPost, in tableview: UITableView) -> UITableViewCell {
     if let textPost = model as? TextPost {
       let cell = tableview.dequeueReusableCell(withIdentifier: "postcell") as! PostCell
       cell.configure(with: textPost)

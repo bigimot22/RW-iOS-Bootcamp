@@ -92,6 +92,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		695C6CA224AA154800D3FA67 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				69B881C224A8E59E007F2E85 /* Extension+Date.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		C3C9D351249B324B001F55A6 = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +128,7 @@
 				C3C9D398249B3479001F55A6 /* Model */,
 				C3C9D391249B326C001F55A6 /* View */,
 				C3C9D39E249B3C30001F55A6 /* ViewModel */,
+				695C6CA224AA154800D3FA67 /* Extensions */,
 				C3C9D369249B324C001F55A6 /* Assets.xcassets */,
 				C3C9D36E249B324C001F55A6 /* Info.plist */,
 				C3C9D366249B324B001F55A6 /* Birdie_Final.xcdatamodeld */,
@@ -171,7 +180,6 @@
 				C3C9D396249B346E001F55A6 /* MediaPostProtocol.swift */,
 				C3C9D392249B3448001F55A6 /* TextPostModel.swift */,
 				C3C9D394249B3453001F55A6 /* ImagePostModel.swift */,
-				69B881C224A8E59E007F2E85 /* Extension+Date.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
