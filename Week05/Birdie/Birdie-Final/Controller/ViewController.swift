@@ -13,12 +13,15 @@ class ViewController: UIViewController {
   @IBOutlet weak var tableview: UITableView!
 
   var datasource: MediaPostsHandler!
+  var viewmodel:  PostViewmodel!
+
   private let picker = UIImagePickerController()
   private var pickedImage: UIImage?
 
   override func viewDidLoad() {
     super.viewDidLoad()
     datasource = MediaPostsHandler.shared
+    viewmodel = PostViewmodel()
     setUpTableView()
     setUpImagePicker()
   }
@@ -97,18 +100,21 @@ extension ViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let model = datasource.mediaPosts[indexPath.row]
+//    let viewmodel = PostViewmodel()
+    let cell2 = viewmodel.setUpTableViewCell(for: model, in: tableView)
+    return cell2
 
-    if let textPost = model as? TextPost {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "postcell") as! PostCell
-      cell.configure(with: textPost)
-      return cell
-    } else if let imagePost = model as? ImagePost {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "imagecell") as! ImagePostCell
-      cell.configure(with: model, image: imagePost.image)
-      return cell
-    }
-
-    return UITableViewCell.init()
+//    if let textPost = model as? TextPost {
+//      let cell = tableView.dequeueReusableCell(withIdentifier: "postcell") as! PostCell
+//      cell.configure(with: textPost)
+//      return cell
+//    } else if let imagePost = model as? ImagePost {
+//      let cell = tableView.dequeueReusableCell(withIdentifier: "imagecell") as! ImagePostCell
+//      cell.configure(with: model, image: imagePost.image)
+//      return cell
+//    }
+//
+//    return UITableViewCell.init()
   }
 
 

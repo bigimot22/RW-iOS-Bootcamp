@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		695C6CA124AA0C0A00D3FA67 /* PostViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695C6CA024AA0C0A00D3FA67 /* PostViewmodel.swift */; };
 		69B881BF24A8CFE8007F2E85 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B881BE24A8CFE8007F2E85 /* PostCell.swift */; };
 		69B881C324A8E59E007F2E85 /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B881C224A8E59E007F2E85 /* Extension+Date.swift */; };
 		C3C9D35E249B324B001F55A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C9D35D249B324B001F55A6 /* AppDelegate.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		695C6CA024AA0C0A00D3FA67 /* PostViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewmodel.swift; sourceTree = "<group>"; };
 		69B881BE24A8CFE8007F2E85 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		69B881C224A8E59E007F2E85 /* Extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
 		C3C9D35A249B324B001F55A6 /* Birdie-Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Birdie-Final.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +187,7 @@
 		C3C9D39E249B3C30001F55A6 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				695C6CA024AA0C0A00D3FA67 /* PostViewmodel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				C3C9D397249B346E001F55A6 /* MediaPostProtocol.swift in Sources */,
 				C3C9D39B249B3711001F55A6 /* MediaPostsHandler.swift in Sources */,
 				C3C9D368249B324B001F55A6 /* Birdie_Final.xcdatamodeld in Sources */,
+				695C6CA124AA0C0A00D3FA67 /* PostViewmodel.swift in Sources */,
 				C3C9D35E249B324B001F55A6 /* AppDelegate.swift in Sources */,
 				C3C9D360249B324B001F55A6 /* SceneDelegate.swift in Sources */,
 				69B881C324A8E59E007F2E85 /* Extension+Date.swift in Sources */,
