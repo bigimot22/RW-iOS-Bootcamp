@@ -30,25 +30,12 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
+import UIKit
 
-struct Pokemon: Hashable, Equatable {
-  var pokemonId: Int
-  var pokemonName: String
-  var baseExperience: Int
-  var weight: Int
-  var height: Int
-}
+class CompactPokemonCell: UICollectionViewCell {
+  static let reuseIdentifier = String(describing: CompactPokemonCell.self)
 
-
-extension Pokemon {
-  func hash(into hasher: inout Hasher ) {
-    hasher.combine(pokemonId)
-  }
-}
-
-extension Pokemon {
-  static func ==(lhs: Pokemon, rhs: Pokemon) -> Bool {
-    return lhs.pokemonId == rhs.pokemonId
-  }
+  @IBOutlet weak var title: UILabel!
+  @IBOutlet weak var imageView: UIImageView!
+    
 }
