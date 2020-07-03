@@ -52,7 +52,7 @@ class CompactViewController: UIViewController {
     
 
   private func configureLayout() -> UICollectionViewCompositionalLayout {
-    let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.33), heightDimension: .fractionalHeight(1.0))
+    let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3), heightDimension: .fractionalHeight(1.0))
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
     item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
     let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(150))
@@ -66,7 +66,7 @@ class CompactViewController: UIViewController {
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompactPokemonCell.reuseIdentifier, for: indexPath) as? CompactPokemonCell else {
         fatalError("Cannot create cell! Identifier:  \(CompactPokemonCell.reuseIdentifier)")
       }
-      cell.title.text = pokemon.pokemonName //number.description
+      cell.title.text = pokemon.pokemonName
       cell.imageView.image = UIImage(named: pokemon.pokemonId.description)
       return cell
     })
