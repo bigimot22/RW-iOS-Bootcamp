@@ -33,5 +33,10 @@
 import Foundation
 
 struct Pokemon {
+  var pokemonId: Int
+  var pokemonName: String
+  var baseExperience: Int
+  var weight: Int
+  var height: Int
 }
 
