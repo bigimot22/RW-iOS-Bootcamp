@@ -12,6 +12,8 @@
 		185CB1FE23C78CE6009F7571 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185CB1FD23C78CE6009F7571 /* SceneDelegate.swift */; };
 		185CB20323C78CE6009F7571 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185CB20123C78CE6009F7571 /* Main.storyboard */; };
 		185CB20523C78CE8009F7571 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 185CB20423C78CE8009F7571 /* Assets.xcassets */; };
+		691EEDEC24B07C8A00833346 /* LargePokemonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691EEDEB24B07C8A00833346 /* LargePokemonCell.swift */; };
+		691EEDEE24B07DFF00833346 /* LargeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691EEDED24B07DFF00833346 /* LargeViewController.swift */; };
 		693DAC1924AF55B7004177DF /* CompactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693DAC1824AF55B6004177DF /* CompactViewController.swift */; };
 		693DAC1B24AF5C86004177DF /* CompactPokemonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693DAC1A24AF5C86004177DF /* CompactPokemonCell.swift */; };
 		A10D04F924ABC8DB00DE5D14 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10D04F824ABC8DB00DE5D14 /* Pokemon.swift */; };
@@ -30,6 +32,8 @@
 		185CB20223C78CE6009F7571 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		185CB20423C78CE8009F7571 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		185CB20923C78CE8009F7571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		691EEDEB24B07C8A00833346 /* LargePokemonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargePokemonCell.swift; sourceTree = "<group>"; };
+		691EEDED24B07DFF00833346 /* LargeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeViewController.swift; sourceTree = "<group>"; };
 		693DAC1824AF55B6004177DF /* CompactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactViewController.swift; sourceTree = "<group>"; };
 		693DAC1A24AF5C86004177DF /* CompactPokemonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPokemonCell.swift; sourceTree = "<group>"; };
 		A10D04F824ABC8DB00DE5D14 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
@@ -88,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				693DAC1824AF55B6004177DF /* CompactViewController.swift */,
+				691EEDED24B07DFF00833346 /* LargeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -95,6 +100,7 @@
 		6962259C24AF79B10083DEF8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A125200C24AAABA0008F7E2E /* PokemonGenerator.swift */,
 				A10D04F824ABC8DB00DE5D14 /* Pokemon.swift */,
 			);
 			path = Models;
@@ -104,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				693DAC1A24AF5C86004177DF /* CompactPokemonCell.swift */,
+				691EEDEB24B07C8A00833346 /* LargePokemonCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -112,7 +119,6 @@
 			isa = PBXGroup;
 			children = (
 				A125200924AAAB71008F7E2E /* csv.swift */,
-				A125200C24AAABA0008F7E2E /* PokemonGenerator.swift */,
 				A125200824AAAB71008F7E2E /* pokemon.csv */,
 			);
 			path = Data;
@@ -246,7 +252,9 @@
 				A125200B24AAAB71008F7E2E /* csv.swift in Sources */,
 				A125200D24AAABA0008F7E2E /* PokemonGenerator.swift in Sources */,
 				185CB1FC23C78CE6009F7571 /* AppDelegate.swift in Sources */,
+				691EEDEC24B07C8A00833346 /* LargePokemonCell.swift in Sources */,
 				693DAC1B24AF5C86004177DF /* CompactPokemonCell.swift in Sources */,
+				691EEDEE24B07DFF00833346 /* LargeViewController.swift in Sources */,
 				185CB1FE23C78CE6009F7571 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

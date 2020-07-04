@@ -68,6 +68,7 @@ class CompactViewController: UIViewController {
       }
       cell.title.text = pokemon.pokemonName
       cell.imageView.image = UIImage(named: pokemon.pokemonId.description)
+      cell.layer.cornerRadius = 5
       return cell
     })
 
