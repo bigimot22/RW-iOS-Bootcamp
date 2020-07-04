@@ -33,55 +33,30 @@
 import UIKit
 
 class LargeViewController: UIViewController {
-
-
-    enum Section {
-      case main
-    }
-
-    @IBOutlet private weak var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<Section, Pokemon>!
-    var pokemons = [Pokemon]()
-
-      override func viewDidLoad() {
-          super.viewDidLoad()
-        pokemons = PokemonGenerator.shared.generatePokemons()
-
-        collectionView.collectionViewLayout = configureLayout()
-        configureDataSource()
-
-      }
-
-
-    private func configureLayout() -> UICollectionViewCompositionalLayout {
-      let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-      let item = NSCollectionLayoutItem(layoutSize: itemSize)
-      item.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 5, bottom: 15, trailing: 5)
-      let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .fractionalHeight(1.0))
-      let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-      let section = NSCollectionLayoutSection(group: group)
-      section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-      return UICollectionViewCompositionalLayout(section: section)
-    }
-
-    private func configureDataSource() {
-      dataSource = UICollectionViewDiffableDataSource<Section, Pokemon>(collectionView: self.collectionView, cellProvider: { (collectionView, indexPath, pokemon) -> UICollectionViewCell? in
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LargePokemonCell.reuseIdentifier, for: indexPath) as? LargePokemonCell else {
-          fatalError("Cannot create cell! Identifier:  \(LargePokemonCell.reuseIdentifier)")
-        }
-        cell.title.text = pokemon.pokemonName
-        cell.imageView.image = UIImage(named: pokemon.pokemonId.description)
-        cell.baseLabel.text = pokemon.baseExperience.description
-        cell.heightLabel.text = pokemon.height.description
-        cell.weightLabel.text = pokemon.weight.description
-        cell.layer.cornerRadius = 10
-        return cell
-      })
-
-      var initialSnapshot = NSDiffableDataSourceSnapshot<Section, Pokemon>()
-      initialSnapshot.appendSections([.main])
-      initialSnapshot.appendItems(pokemons, toSection: .main)
-      dataSource.apply(initialSnapshot, animatingDifferences: false)
-    }
-
+  
+  @IBOutlet private weak var collectionView: UICollectionView!
+  private lazy var dataSource: DataSource = makeDataSource()
+  private var dataFactory = DataFactory()
+  
+  var pokemons = [Pokemon]()
+  
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    pokemons = PokemonGenerator.shared.generatePokemons()
+    collectionView.collectionViewLayout = dataFactory.makeLayout(for: .large)
+    applySnapshot(animatingDifferences: false)
+  }
+  
+  func applySnapshot(animatingDifferences: Bool = true) {
+    var initialSnapshot = Snapshot()
+    initialSnapshot.appendSections([.main])
+    initialSnapshot.appendItems(pokemons, toSection: .main)
+    dataSource.apply(initialSnapshot, animatingDifferences: animatingDifferences)
+  }
+  
+  
+  private func makeDataSource() -> DataSource {
+    return dataFactory.makeDataSource(collectionView: self.collectionView, cellIdentifier: LargePokemonCell.reuseIdentifier)}
+  
 }
