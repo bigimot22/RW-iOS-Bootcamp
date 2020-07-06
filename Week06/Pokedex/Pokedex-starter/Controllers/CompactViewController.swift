@@ -39,10 +39,14 @@ class CompactViewController: UIViewController {
   private var dataFactory = DataFactory()
   var pokemons = [Pokemon]()
 
+  private var searchController = UISearchController(searchResultsController: nil)
+
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.title = "PokeDex Compact"
+    self.navigationController?.navigationBar.backgroundColor = .clear
     pokemons = PokemonGenerator.shared.generatePokemons()
-
+configureSearchController()
     collectionView.collectionViewLayout = dataFactory.makeLayout(for: .compact)
     applySnapshot(animatingDifferences: false)
   }
@@ -59,4 +63,44 @@ class CompactViewController: UIViewController {
   }
 
 
+}
+
+
+extension CompactViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    pokemons = filteredPokemons(for: searchController.searchBar.text)
+    applySnapshot()
+  }
+
+  func filteredPokemons(for queryOrNil: String?) -> [Pokemon] {
+    let allPokemons = PokemonGenerator.shared.generatePokemons()
+    guard
+      let query = queryOrNil,
+      !query.isEmpty
+      else {
+        return allPokemons
+    }
+    return allPokemons.filter {
+      return $0.pokemonName.lowercased().contains(query.lowercased())
+    }
+  }
+
+  func configureSearchController() {
+    searchController.searchResultsUpdater = self
+    searchController.obscuresBackgroundDuringPresentation = false
+    searchController.searchBar.searchTextField.backgroundColor = .white
+    searchController.searchBar.placeholder = "Search Pokemons"
+    navigationItem.searchController = searchController
+    definesPresentationContext = true
+  }
+}
+
+
+extension CompactViewController {
+  override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    super.viewWillTransition(to: size, with: coordinator)
+    coordinator.animate(alongsideTransition: { context in
+      self.collectionView.collectionViewLayout.invalidateLayout()
+    }, completion: nil)
+  }
 }
