@@ -80,9 +80,8 @@
 			children = (
 				6962259B24AF79840083DEF8 /* Controllers */,
 				6962259D24AF79CE0083DEF8 /* Views */,
-				6962259E24AF7A2D0083DEF8 /* Data */,
 				6962259C24AF79B10083DEF8 /* Models */,
-				696225A024AF7AE70083DEF8 /* Helpers */,
+				696225A024AF7AE70083DEF8 /* Supporting Files */,
 				6962259F24AF7A5F0083DEF8 /* Storyboards */,
 				A125200724AAAB64008F7E2E /* Resources */,
 				185CB20923C78CE8009F7571 /* Info.plist */,
@@ -103,6 +102,7 @@
 		6962259C24AF79B10083DEF8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6962259E24AF7A2D0083DEF8 /* Data */,
 				A125200C24AAABA0008F7E2E /* PokemonGenerator.swift */,
 				A10D04F824ABC8DB00DE5D14 /* Pokemon.swift */,
 			);
@@ -136,13 +136,13 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		696225A024AF7AE70083DEF8 /* Helpers */ = {
+		696225A024AF7AE70083DEF8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				185CB1FB23C78CE6009F7571 /* AppDelegate.swift */,
 				185CB1FD23C78CE6009F7571 /* SceneDelegate.swift */,
 			);
-			path = Helpers;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		A125200724AAAB64008F7E2E /* Resources */ = {
