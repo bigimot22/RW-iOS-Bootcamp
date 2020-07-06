@@ -66,7 +66,6 @@ class DataFactory: NSObject {
     return dataSource
   }
 
-
   private func getCompactPokemonCell(in collectionView: UICollectionView, at indexPath: IndexPath, for pokemon: Pokemon) -> CompactPokemonCell {
     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompactPokemonCell.reuseIdentifier, for: indexPath) as? CompactPokemonCell else {
       fatalError("Cannot create cell! Identifier:  \(CompactPokemonCell.reuseIdentifier)")
@@ -90,28 +89,29 @@ class DataFactory: NSObject {
     return cell
   }
 
+
   // MARK: - LAYOUT - METHODS
 
   func makeLayout(for layoutKind: LayoutKind) -> UICollectionViewCompositionalLayout {
     switch layoutKind {
     case .compact:
-      return UICollectionViewCompositionalLayout(section: createCompactLayoutSession())
+      return createCompactLayout()
     case .large:
-      return UICollectionViewCompositionalLayout(section: createlargeLayoutSession())
+      return createlargeLayout()
     }
   }
 
-  private func createCompactLayoutSession() -> NSCollectionLayoutSection {
+  private func createCompactLayout() -> UICollectionViewCompositionalLayout {
     let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3), heightDimension: .fractionalHeight(1.0))
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
     item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
     let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(150))
     let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
     let section = NSCollectionLayoutSection(group: group)
-    return section
+    return UICollectionViewCompositionalLayout(section: section)
   }
 
-  private func createlargeLayoutSession() -> NSCollectionLayoutSection {
+  private func createlargeLayout() -> UICollectionViewCompositionalLayout {
     let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
     item.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 5, bottom: 15, trailing: 5)
@@ -119,7 +119,7 @@ class DataFactory: NSObject {
     let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
     let section = NSCollectionLayoutSection(group: group)
     section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-    return section
+    return UICollectionViewCompositionalLayout(section: section)
   }
 
 
