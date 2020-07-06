@@ -1,12 +1,12 @@
 <!-- Header -->
-<h1>Pokedex</h1>
+<h1>PokeDex</h1>
 
 [![Swift](https://img.shields.io/badge/Swift-5.0-orange.svg?longCache=true&style=flat&logo=swift)](https://www.swift.org)
 
 <!-- Body -->
 ## RW iOS Bootcamp Assigment 6
 
-**PokeDex**  is a collectionView centric demo app that allows you  to view your favorite pokemons in a vertical scrollable layout and also as a horizontally scrollable layout with larger cells.  It demostrate the use of CollectionViews with diffable datasources and compositional layouts  with different cell types. I built it specifically for assigment 06 of the firsts ever RW iOS Bootcamp at https://www.raywenderlich.com/10529048-ios-bootcamp.
+**PokeDex**  is a collectionView centric demo app  to view your favorite pokemons in a vertical scrollable layout and also as a horizontally scrollable layout with larger cells.  It demostrate the use of CollectionViews with diffable datasources and compositional layouts  with different cell types. Also, it has a reactive search functionality with built-in animations. I built it specifically for assigment 06 of the firsts ever RW iOS Bootcamp at https://www.raywenderlich.com/10529048-ios-bootcamp.
 
 
 ## Screenshots
