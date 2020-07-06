@@ -61,7 +61,6 @@ class DataFactory: NSObject {
       default:
         fatalError()
       }
-      return UICollectionViewCell()
     })
     return dataSource
   }
