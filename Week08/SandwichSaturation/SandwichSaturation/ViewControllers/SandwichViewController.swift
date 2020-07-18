@@ -46,17 +46,22 @@ class SandwichViewController: UITableViewController, SandwichDataSource {
   }
   
   func loadSandwiches() {
-    let sandwichArray = [SandwichData(name: "Bagel Toast", sauceAmount: .none, imageName: "sandwich1"),
-                         SandwichData(name: "Bologna", sauceAmount: .none, imageName: "sandwich2"),
-                         SandwichData(name: "Breakfast Roll", sauceAmount: .none, imageName: "sandwich3"),
-                         SandwichData(name: "Club", sauceAmount: .none, imageName: "sandwich4"),
-                         SandwichData(name: "Sub", sauceAmount: .none, imageName: "sandwich5"),
-                         SandwichData(name: "Steak", sauceAmount: .tooMuch, imageName: "sandwich6"),
-                         SandwichData(name: "Dunno", sauceAmount: .tooMuch, imageName: "sandwich7"),
-                         SandwichData(name: "Torta", sauceAmount: .tooMuch, imageName: "sandwich8"),
-                         SandwichData(name: "Ham", sauceAmount: .tooMuch, imageName: "sandwich9"),
-                         SandwichData(name: "Lettuce", sauceAmount: .tooMuch, imageName: "sandwich10")]
-    sandwiches.append(contentsOf: sandwichArray)
+    let filename = "sandwiches"
+    let decoder = JSONDecoder()
+
+    guard let fileURL = Bundle.main.url(forResource: filename,
+                                        withExtension: "json") else {
+                                          print("Couldn't find \(filename) in main bundle.")
+                                          return
+    }
+
+    do {
+      let data = try Data(contentsOf: fileURL)
+      let sandwichArray =  try decoder.decode([SandwichData].self, from: data)
+      sandwiches.append(contentsOf: sandwichArray)
+    } catch let error {
+      print("Couldn't parse \(filename) as \(SandwichData.self): \n\(error)")
+    }
   }
 
   func saveSandwich(_ sandwich: SandwichData) {
