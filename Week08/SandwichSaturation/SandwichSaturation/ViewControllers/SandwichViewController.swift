@@ -13,6 +13,7 @@ protocol SandwichDataSource {
 }
 
 class SandwichViewController: UITableViewController, SandwichDataSource {
+  let defaults = UserDefaults.standard
   let searchController = UISearchController(searchResultsController: nil)
   var sandwiches = [SandwichData]()
   var filteredSandwiches = [SandwichData]()
@@ -36,6 +37,7 @@ class SandwichViewController: UITableViewController, SandwichDataSource {
     navigationItem.searchController = searchController
     definesPresentationContext = true
     searchController.searchBar.scopeButtonTitles = SauceAmount.allCases.map { $0.rawValue }
+    searchController.searchBar.selectedScopeButtonIndex = defaults.integer(forKey: "selectedSauceScope")
     searchController.searchBar.delegate = self
   }
 
@@ -135,6 +137,7 @@ extension SandwichViewController: UISearchResultsUpdating {
 extension SandwichViewController: UISearchBarDelegate {
   func searchBar(_ searchBar: UISearchBar,
       selectedScopeButtonIndexDidChange selectedScope: Int) {
+    defaults.set(selectedScope, forKey: "selectedSauceScope")
     let sauceAmount = SauceAmount(rawValue:
       searchBar.scopeButtonTitles![selectedScope])
     filterContentForSearchText(searchBar.text!, sauceAmount: sauceAmount)
