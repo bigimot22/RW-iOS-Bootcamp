@@ -7,9 +7,33 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+
+  lazy var persisitentContainer: NSPersistentContainer = {
+    let container = NSPersistentContainer(name: "Sandwich")
+    container.loadPersistentStores(completionHandler: {
+      (storeDescription, error) in
+      print("storeDescription: \(storeDescription)")
+      if let error = error as NSError? {
+        fatalError("Unresolved container error: \(error), \(error.userInfo) ")
+      }
+    })
+    return container
+  }()
+
+  func saveContext() {
+    let context = persisitentContainer.viewContext
+    if context.hasChanges {
+      do {
+        try context.save()
+      } catch {
+        fatalError("Unresolved context saving error: \(error), \(error.localizedDescription) ")
+      }
+    }
+  }
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.

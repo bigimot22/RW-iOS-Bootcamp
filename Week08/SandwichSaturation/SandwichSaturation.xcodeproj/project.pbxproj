@@ -18,6 +18,9 @@
 		12A0791124AFDC5C0097F149 /* AddSandwichViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A0791024AFDC5C0097F149 /* AddSandwichViewController.swift */; };
 		12A0791424AFDD8E0097F149 /* SandwichData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A0791324AFDD8E0097F149 /* SandwichData.swift */; };
 		12A0791824B2CC9A0097F149 /* sandwiches.json in Resources */ = {isa = PBXBuildFile; fileRef = 12A0791724B2CC9A0097F149 /* sandwiches.json */; };
+		69C0DF2624C429DF003A08F4 /* SandwichData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 69C0DF2424C429DF003A08F4 /* SandwichData.xcdatamodeld */; };
+		69C0DF2924C42CF5003A08F4 /* Sandwich+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C0DF2724C42CF5003A08F4 /* Sandwich+CoreDataClass.swift */; };
+		69C0DF2A24C42CF5003A08F4 /* Sandwich+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C0DF2824C42CF5003A08F4 /* Sandwich+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		12A0791024AFDC5C0097F149 /* AddSandwichViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSandwichViewController.swift; sourceTree = "<group>"; };
 		12A0791324AFDD8E0097F149 /* SandwichData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandwichData.swift; sourceTree = "<group>"; };
 		12A0791724B2CC9A0097F149 /* sandwiches.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sandwiches.json; sourceTree = "<group>"; };
+		69C0DF2524C429DF003A08F4 /* SandwichData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SandwichData.xcdatamodel; sourceTree = "<group>"; };
+		69C0DF2724C42CF5003A08F4 /* Sandwich+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sandwich+CoreDataClass.swift"; sourceTree = "<group>"; };
+		69C0DF2824C42CF5003A08F4 /* Sandwich+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sandwich+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,7 @@
 		1255797924AFB8FA004C616F /* SandwichSaturation */ = {
 			isa = PBXGroup;
 			children = (
+				69C0DF2324C42977003A08F4 /* Resources */,
 				1255797A24AFB8FA004C616F /* AppDelegate.swift */,
 				1255797C24AFB8FA004C616F /* SceneDelegate.swift */,
 				12A0791224AFDD810097F149 /* Model */,
@@ -102,8 +109,18 @@
 			children = (
 				12A0791724B2CC9A0097F149 /* sandwiches.json */,
 				12A0791324AFDD8E0097F149 /* SandwichData.swift */,
+				69C0DF2724C42CF5003A08F4 /* Sandwich+CoreDataClass.swift */,
+				69C0DF2824C42CF5003A08F4 /* Sandwich+CoreDataProperties.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		69C0DF2324C42977003A08F4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				69C0DF2424C429DF003A08F4 /* SandwichData.xcdatamodeld */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,7 +200,10 @@
 				12A0791124AFDC5C0097F149 /* AddSandwichViewController.swift in Sources */,
 				1255797B24AFB8FA004C616F /* AppDelegate.swift in Sources */,
 				1255797D24AFB8FA004C616F /* SceneDelegate.swift in Sources */,
+				69C0DF2924C42CF5003A08F4 /* Sandwich+CoreDataClass.swift in Sources */,
 				1255797F24AFB8FA004C616F /* SandwichViewController.swift in Sources */,
+				69C0DF2A24C42CF5003A08F4 /* Sandwich+CoreDataProperties.swift in Sources */,
+				69C0DF2624C429DF003A08F4 /* SandwichData.xcdatamodeld in Sources */,
 				12A0791424AFDD8E0097F149 /* SandwichData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,6 +404,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		69C0DF2424C429DF003A08F4 /* SandwichData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				69C0DF2524C429DF003A08F4 /* SandwichData.xcdatamodel */,
+			);
+			currentVersion = 69C0DF2524C429DF003A08F4 /* SandwichData.xcdatamodel */;
+			path = SandwichData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1255796F24AFB8FA004C616F /* Project object */;
 }
