@@ -108,13 +108,20 @@ class CoreDataManager: NSObject {
     saveContext()
   }
 
+  func delete(_ sandwich: Sandwich) {
+    let context = persisitentContainer.viewContext
+    context.delete(sandwich)
+    saveContext()
+  }
+
+
   func filterSandwiches(name: String = "", query: String = "") -> [Sandwich] {
   var sands = [Sandwich]()
     let context = persisitentContainer.viewContext
     let request = Sandwich.fetchRequest() as NSFetchRequest<Sandwich>
     if !name.isEmpty {
-       let predicate1  = NSPredicate(format: "name CONTAINS [c] %@", name)
-      let predicate2  = NSPredicate(format: "sauceAmount MATCHES [c] %@", query)
+       let predicate1  = NSPredicate(format: "name CONTAINS [cd] %@", name)
+      let predicate2  = NSPredicate(format: "sauceAmount MATCHES [cd] %@", query)
       request.predicate = query == "Either" ? predicate1 : NSCompoundPredicate(andPredicateWithSubpredicates: [predicate1, predicate2])
     } else {
       request.predicate  = NSPredicate(format: "sauceAmount MATCHES %@", query)

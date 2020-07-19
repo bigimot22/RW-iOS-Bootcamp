@@ -113,6 +113,15 @@ class SandwichViewController: UITableViewController, SandwichDataSource {
 
     return cell
   }
+
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+      let sandwich = sandwiches[indexPath.row]
+      sandwiches.remove(at: indexPath.row)
+      store.delete(sandwich)
+      tableView.deleteRows(at: [indexPath], with: .fade)
+    }
+  }
 }
 
 // MARK: - UISearchResultsUpdating
