@@ -83,4 +83,16 @@ class CoreDataManager: NSObject {
       return loadedSandwiches
   }
 
+  func fetchSandwiches() -> [Sandwich] {
+    var sandwiches: [Sandwich] = []
+    let context = persisitentContainer.viewContext
+    do {
+      sandwiches = try context.fetch(Sandwich.fetchRequest())
+      print("store sandwiches loaded. Count: \(sandwiches.count)")
+    } catch let error {
+      print(error.localizedDescription)
+    }
+    return sandwiches
+  }
+
 }

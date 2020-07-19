@@ -9,19 +9,26 @@
 import UIKit
 
 protocol SandwichDataSource {
-  func saveSandwich(_: SandwichData)
+//  func saveSandwich(_: SandwichData)
+  func saveSandwich(_: Sandwich)
 }
 
 class SandwichViewController: UITableViewController, SandwichDataSource {
   let defaults = UserDefaults.standard
   let searchController = UISearchController(searchResultsController: nil)
-  var sandwiches = [SandwichData]()
-  var filteredSandwiches = [SandwichData]()
+
+  let appDelegate = UIApplication.shared.delegate as! AppDelegate
+  let store = (UIApplication.shared.delegate as! AppDelegate).coredataManager
+  var sandwiches = [Sandwich]()
+  var filteredSandwiches = [Sandwich]()
+
+//  var sandwiches = [SandwichData]()
+//  var filteredSandwiches = [SandwichData]()
 
   required init?(coder: NSCoder) {
     super.init(coder: coder)
     
-    loadSandwiches()
+//    loadSandwiches()
   }
   
   override func viewDidLoad() {
@@ -43,28 +50,34 @@ class SandwichViewController: UITableViewController, SandwichDataSource {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    sandwiches = store.fetchSandwiches()
   }
   
-  func loadSandwiches() {
-    let filename = "sandwiches"
-    let decoder = JSONDecoder()
+//  func loadSandwiches() {
+//    let filename = "sandwiches"
+//    let decoder = JSONDecoder()
+//
+//    guard let fileURL = Bundle.main.url(forResource: filename,
+//                                        withExtension: "json") else {
+//                                          print("Couldn't find \(filename) in main bundle.")
+//                                          return
+//    }
+//
+//    do {
+//      let data = try Data(contentsOf: fileURL)
+//      let sandwichArray =  try decoder.decode([SandwichData].self, from: data)
+//      sandwiches.append(contentsOf: sandwichArray)
+//    } catch let error {
+//      print("Couldn't parse \(filename) as \(SandwichData.self): \n\(error)")
+//    }
+//  }
 
-    guard let fileURL = Bundle.main.url(forResource: filename,
-                                        withExtension: "json") else {
-                                          print("Couldn't find \(filename) in main bundle.")
-                                          return
-    }
+//  func saveSandwich(_ sandwich: SandwichData) {
+//    sandwiches.append(sandwich)
+//    tableView.reloadData()
+//  }
 
-    do {
-      let data = try Data(contentsOf: fileURL)
-      let sandwichArray =  try decoder.decode([SandwichData].self, from: data)
-      sandwiches.append(contentsOf: sandwichArray)
-    } catch let error {
-      print("Couldn't parse \(filename) as \(SandwichData.self): \n\(error)")
-    }
-  }
-
-  func saveSandwich(_ sandwich: SandwichData) {
+  func saveSandwich(_ sandwich: Sandwich) {
     sandwiches.append(sandwich)
     tableView.reloadData()
   }
@@ -81,8 +94,9 @@ class SandwichViewController: UITableViewController, SandwichDataSource {
   
   func filterContentForSearchText(_ searchText: String,
                                   sauceAmount: SauceAmount? = nil) {
-    filteredSandwiches = sandwiches.filter { (sandwhich: SandwichData) -> Bool in
-      let doesSauceAmountMatch = sauceAmount == .any || sandwhich.sauceAmount == sauceAmount
+    filteredSandwiches = sandwiches.filter { (sandwhich: Sandwich) -> Bool in
+      let doesSauceAmountMatch = sauceAmount == .any || sandwhich.sauceAmount == sauceAmount?.rawValue
+//      let doesSauceAmountMatch = sauceAmount == .any || sandwhich.sauceAmount == sauceAmount
 
       if isSearchBarEmpty {
         return doesSauceAmountMatch

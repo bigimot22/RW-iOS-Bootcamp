@@ -57,15 +57,16 @@ class AddSandwichViewController: UIViewController {
         return
     }
     
-    let newSandwich = SandwichData(name: sandwichName,
-                               sauceAmount: sauceAmount,
-                               imageName: imageName)
+    let newSandwich = Sandwich()
+    newSandwich.name = sandwichName
+    newSandwich.sauceAmount = sauceAmount.rawValue
+    newSandwich.imageName = imageName
     saveSandwich(sandwich: newSandwich)
 
     dismiss(animated: true, completion: nil)
   }
   
-  func saveSandwich(sandwich: SandwichData) {
+  func saveSandwich(sandwich: Sandwich) {
     guard let navController = presentingViewController as? UINavigationController,
       let dataSource = navController.topViewController as? SandwichDataSource else {
         print("Oh noes! The datasource is missing and I don't know where to put these sandwiches!")
