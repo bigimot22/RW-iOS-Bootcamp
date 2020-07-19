@@ -95,4 +95,14 @@ class CoreDataManager: NSObject {
     return sandwiches
   }
 
+  func AddNewSandwich(name: String, sauceAmount: String, imageName: String) {
+    let context = persisitentContainer.viewContext
+    let sandwich = NSEntityDescription.insertNewObject(forEntityName: "Sandwich", into: context) as! Sandwich
+      sandwich.name = name
+      sandwich.sauceAmount = sauceAmount
+      sandwich.imageName = imageName
+
+    saveContext()
+  }
+
 }

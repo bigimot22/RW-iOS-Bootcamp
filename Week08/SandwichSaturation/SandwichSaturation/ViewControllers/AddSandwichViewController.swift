@@ -14,6 +14,8 @@ class AddSandwichViewController: UIViewController {
   @IBOutlet weak var imageView: UIImageView!
   let imageName: String
   var sauceAmount: SauceAmount!
+
+  var delegate: SandwichDataSource?
   
   required init?(coder: NSCoder) {
     imageName = AddSandwichViewController.randomImageName()
@@ -56,24 +58,9 @@ class AddSandwichViewController: UIViewController {
         
         return
     }
-    
-    let newSandwich = Sandwich()
-    newSandwich.name = sandwichName
-    newSandwich.sauceAmount = sauceAmount.rawValue
-    newSandwich.imageName = imageName
-    saveSandwich(sandwich: newSandwich)
 
+    delegate?.saveSandwich(name: sandwichName, sauceAmount: sauceAmount.rawValue, imageName: imageName)
     dismiss(animated: true, completion: nil)
-  }
-  
-  func saveSandwich(sandwich: Sandwich) {
-    guard let navController = presentingViewController as? UINavigationController,
-      let dataSource = navController.topViewController as? SandwichDataSource else {
-        print("Oh noes! The datasource is missing and I don't know where to put these sandwiches!")
-        fatalError()
-    }
-    
-    dataSource.saveSandwich(sandwich)
   }
 }
 

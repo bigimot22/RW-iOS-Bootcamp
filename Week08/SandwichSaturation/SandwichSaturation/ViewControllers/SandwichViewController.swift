@@ -11,6 +11,7 @@ import UIKit
 protocol SandwichDataSource {
 //  func saveSandwich(_: SandwichData)
   func saveSandwich(_: Sandwich)
+  func saveSandwich(name: String, sauceAmount: String, imageName: String)
 }
 
 class SandwichViewController: UITableViewController, SandwichDataSource {
@@ -52,39 +53,27 @@ class SandwichViewController: UITableViewController, SandwichDataSource {
     super.viewWillAppear(animated)
     sandwiches = store.fetchSandwiches()
   }
-  
-//  func loadSandwiches() {
-//    let filename = "sandwiches"
-//    let decoder = JSONDecoder()
-//
-//    guard let fileURL = Bundle.main.url(forResource: filename,
-//                                        withExtension: "json") else {
-//                                          print("Couldn't find \(filename) in main bundle.")
-//                                          return
-//    }
-//
-//    do {
-//      let data = try Data(contentsOf: fileURL)
-//      let sandwichArray =  try decoder.decode([SandwichData].self, from: data)
-//      sandwiches.append(contentsOf: sandwichArray)
-//    } catch let error {
-//      print("Couldn't parse \(filename) as \(SandwichData.self): \n\(error)")
-//    }
-//  }
 
-//  func saveSandwich(_ sandwich: SandwichData) {
-//    sandwiches.append(sandwich)
-//    tableView.reloadData()
-//  }
 
   func saveSandwich(_ sandwich: Sandwich) {
     sandwiches.append(sandwich)
     tableView.reloadData()
   }
+  func saveSandwich(name: String, sauceAmount: String, imageName: String) {
+    print("JD: - saving a sandwich...")
+    store.AddNewSandwich(name: name, sauceAmount: sauceAmount, imageName: imageName)
+  }
 
   @objc
   func presentAddView(_ sender: Any) {
     performSegue(withIdentifier: "AddSandwichSegue", sender: self)
+  }
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "AddSandwichSegue" {
+      let destination = segue.destination as! AddSandwichViewController
+      destination.delegate = self
+    }
   }
   
   // MARK: - Search Controller
