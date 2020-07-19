@@ -10,7 +10,7 @@ import UIKit
 
 protocol SandwichDataSource {
 //  func saveSandwich(_: SandwichData)
-  func saveSandwich(_: Sandwich)
+//  func saveSandwich(_: Sandwich)
   func saveSandwich(name: String, sauceAmount: String, imageName: String)
 }
 
@@ -18,7 +18,6 @@ class SandwichViewController: UITableViewController, SandwichDataSource {
   let defaults = UserDefaults.standard
   let searchController = UISearchController(searchResultsController: nil)
 
-  let appDelegate = UIApplication.shared.delegate as! AppDelegate
   let store = (UIApplication.shared.delegate as! AppDelegate).coredataManager
   var sandwiches = [Sandwich]()
   var filteredSandwiches = [Sandwich]()
@@ -54,14 +53,11 @@ class SandwichViewController: UITableViewController, SandwichDataSource {
     sandwiches = store.fetchSandwiches()
   }
 
-
-  func saveSandwich(_ sandwich: Sandwich) {
-    sandwiches.append(sandwich)
-    tableView.reloadData()
-  }
   func saveSandwich(name: String, sauceAmount: String, imageName: String) {
     print("JD: - saving a sandwich...")
     store.AddNewSandwich(name: name, sauceAmount: sauceAmount, imageName: imageName)
+    sandwiches = store.fetchSandwiches()
+    tableView.reloadData()
   }
 
   @objc
@@ -83,18 +79,7 @@ class SandwichViewController: UITableViewController, SandwichDataSource {
   
   func filterContentForSearchText(_ searchText: String,
                                   sauceAmount: SauceAmount? = nil) {
-    filteredSandwiches = sandwiches.filter { (sandwhich: Sandwich) -> Bool in
-      let doesSauceAmountMatch = sauceAmount == .any || sandwhich.sauceAmount == sauceAmount?.rawValue
-//      let doesSauceAmountMatch = sauceAmount == .any || sandwhich.sauceAmount == sauceAmount
-
-      if isSearchBarEmpty {
-        return doesSauceAmountMatch
-      } else {
-        return doesSauceAmountMatch && sandwhich.name.lowercased()
-          .contains(searchText.lowercased())
-      }
-    }
-    
+    filteredSandwiches = store.filterSandwiches(name: searchText, query: sauceAmount?.rawValue ?? "")
     tableView.reloadData()
   }
   

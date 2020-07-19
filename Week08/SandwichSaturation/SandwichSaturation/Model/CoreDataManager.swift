@@ -10,6 +10,9 @@ import Foundation
 import CoreData
 
 class CoreDataManager: NSObject {
+  var sandwiches = [Sandwich]()
+  var filteredSandwiches = [Sandwich]()
+
   lazy var persisitentContainer: NSPersistentContainer = {
     let container = NSPersistentContainer(name: "SandwichData")
     container.loadPersistentStores(completionHandler: {
@@ -103,6 +106,26 @@ class CoreDataManager: NSObject {
       sandwich.imageName = imageName
 
     saveContext()
+  }
+
+  func filterSandwiches(name: String = "", query: String = "") -> [Sandwich] {
+  var sands = [Sandwich]()
+    let context = persisitentContainer.viewContext
+    let request = Sandwich.fetchRequest() as NSFetchRequest<Sandwich>
+    if !name.isEmpty {
+       let predicate1  = NSPredicate(format: "name CONTAINS [c] %@", name)
+      let predicate2  = NSPredicate(format: "sauceAmount MATCHES [c] %@", query)
+      request.predicate = query == "Either" ? predicate1 : NSCompoundPredicate(andPredicateWithSubpredicates: [predicate1, predicate2])
+    } else {
+      request.predicate  = NSPredicate(format: "sauceAmount MATCHES %@", query)
+    }
+    do {
+      sands = try context.fetch(request)
+    } catch let error {
+      print(error.localizedDescription)
+    }
+    print("filteredSandwiches with query -\(query)- gives \(sands.count) sandwiches.")
+  return sands
   }
 
 }
