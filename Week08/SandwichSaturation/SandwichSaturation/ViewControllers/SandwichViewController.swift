@@ -9,8 +9,6 @@
 import UIKit
 
 protocol SandwichDataSource {
-//  func saveSandwich(_: SandwichData)
-//  func saveSandwich(_: Sandwich)
   func saveSandwich(name: String, sauceAmount: String, imageName: String)
 }
 
@@ -21,9 +19,6 @@ class SandwichViewController: UITableViewController, SandwichDataSource {
   let store = (UIApplication.shared.delegate as! AppDelegate).coredataManager
   var sandwiches = [Sandwich]()
   var filteredSandwiches = [Sandwich]()
-
-//  var sandwiches = [SandwichData]()
-//  var filteredSandwiches = [SandwichData]()
 
   required init?(coder: NSCoder) {
     super.init(coder: coder)

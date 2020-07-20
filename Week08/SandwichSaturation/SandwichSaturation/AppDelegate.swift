@@ -13,40 +13,6 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
   let coredataManager = CoreDataManager()
 
-//  lazy var persisitentContainer: NSPersistentContainer = {
-//    let container = NSPersistentContainer(name: "Sandwich")
-//    container.loadPersistentStores(completionHandler: {
-//      (storeDescription, error) in
-//      print("storeDescription: \(storeDescription)")
-//      if let error = error as NSError? {
-//        fatalError("Unresolved container error: \(error), \(error.userInfo) ")
-//      }
-//    })
-//    return container
-//  }()
-//
-//  func saveContext() {
-//    let context = persisitentContainer.viewContext
-//    if context.hasChanges {
-//      do {
-//        try context.save()
-//      } catch {
-//        fatalError("Unresolved context saving error: \(error), \(error.localizedDescription) ")
-//      }
-//    }
-//  }
-//
-//  private func preloadData() {
-//    let preloadkey = "didPreloadData"
-//    let defaults = UserDefaults.standard
-//    if !defaults.bool(forKey: preloadkey) {
-//      // load json and set coredata
-//      defaults.set(true, forKey: preloadkey)
-//      print("preloadkey = \(defaults.bool(forKey: preloadkey))")
-//    }
-//
-//  }
-
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
     coredataManager.preloadData()
