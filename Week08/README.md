@@ -13,7 +13,9 @@
 
 <p align="left">
   <kbd><img src="Screenshots/sandwich-ver.png" height="600"></kbd>
-  <kbd><img src="Screenshots/sandwich-hor.png" height="600"></kbd>
+  <kbd><img src="Screenshots/sandwich-hor.png" height="300"></kbd>
+  <kbd><img src="Screenshots/sandwich-detail-ver.png" height="600"></kbd>
+  <kbd><img src="Screenshots/sandwich-detail-hor.png" height="300"></kbd>
 </p>
 
 
