@@ -19,12 +19,6 @@ class SandwichViewController: UITableViewController, SandwichDataSource {
   let store = (UIApplication.shared.delegate as! AppDelegate).coredataManager
   var sandwiches = [Sandwich]()
   var filteredSandwiches = [Sandwich]()
-
-  required init?(coder: NSCoder) {
-    super.init(coder: coder)
-    
-//    loadSandwiches()
-  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -49,7 +43,6 @@ class SandwichViewController: UITableViewController, SandwichDataSource {
   }
 
   func saveSandwich(name: String, sauceAmount: String, imageName: String) {
-    print("JD: - saving a sandwich...")
     store.AddNewSandwich(name: name, sauceAmount: sauceAmount, imageName: imageName)
     sandwiches = store.fetchSandwiches()
     tableView.reloadData()
