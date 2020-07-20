@@ -27,7 +27,7 @@
         <scene sceneID="smW-Zh-WAh">
             <objects>
                 <tableViewController title="Sandwiches View Controller" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" customClass="SandwichViewController" customModule="SandwichSaturation" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="r7i-6Z-zg0">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="r7i-6Z-zg0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -91,11 +91,76 @@
                     <navigationItem key="navigationItem" title="Sandwiches" id="Zdf-7t-Un8"/>
                     <connections>
                         <segue destination="Gwi-TV-UMp" kind="presentation" identifier="AddSandwichSegue" id="jN9-hL-25V"/>
+                        <segue destination="yEZ-Ky-Bax" kind="show" identifier="detailVC" id="XZ8-yD-QOy"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-813" y="133"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="ljj-ue-Xzc">
+            <objects>
+                <viewController id="yEZ-Ky-Bax" customClass="DetailViewController" customModule="SandwichSaturation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jah-ui-cDz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sandwich14" translatesAutoresizingMaskIntoConstraints="NO" id="xlk-Be-6hu">
+                                <rect key="frame" x="0.0" y="88" width="414" height="694"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sap-Mm-9aF">
+                                <rect key="frame" x="0.0" y="782" width="414" height="80"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="R3U-qK-2vn">
+                                        <rect key="frame" x="20" y="12" width="294" height="62"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sandwich Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygv-ey-w86">
+                                                <rect key="frame" x="0.0" y="0.0" width="196.5" height="33.5"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sauce amount here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Tr-LI-lI1">
+                                                <rect key="frame" x="0.0" y="41.5" width="148.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="2mx-70-INw"/>
+                                    <constraint firstItem="R3U-qK-2vn" firstAttribute="top" secondItem="Sap-Mm-9aF" secondAttribute="top" constant="12" id="54o-dI-vvp"/>
+                                    <constraint firstAttribute="trailing" secondItem="R3U-qK-2vn" secondAttribute="trailing" constant="100" id="6Gc-IL-qqS"/>
+                                    <constraint firstItem="R3U-qK-2vn" firstAttribute="leading" secondItem="Sap-Mm-9aF" secondAttribute="leading" constant="20" id="nsN-UF-nzq"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="YGr-iY-zJe" firstAttribute="trailing" secondItem="Sap-Mm-9aF" secondAttribute="trailing" id="5M6-A1-d6m"/>
+                            <constraint firstItem="Sap-Mm-9aF" firstAttribute="leading" secondItem="YGr-iY-zJe" secondAttribute="leading" id="6Nb-i9-rcb"/>
+                            <constraint firstItem="Sap-Mm-9aF" firstAttribute="top" secondItem="xlk-Be-6hu" secondAttribute="bottom" id="Ikk-Cd-cd2"/>
+                            <constraint firstItem="YGr-iY-zJe" firstAttribute="trailing" secondItem="xlk-Be-6hu" secondAttribute="trailing" id="KRQ-vd-djx"/>
+                            <constraint firstItem="YGr-iY-zJe" firstAttribute="bottom" secondItem="Sap-Mm-9aF" secondAttribute="bottom" id="RVl-w4-xxt"/>
+                            <constraint firstItem="xlk-Be-6hu" firstAttribute="leading" secondItem="YGr-iY-zJe" secondAttribute="leading" id="aKo-V9-Rza"/>
+                            <constraint firstItem="xlk-Be-6hu" firstAttribute="top" secondItem="YGr-iY-zJe" secondAttribute="top" id="uuP-EB-CQ6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YGr-iY-zJe"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Gl7-CJ-Nxm"/>
+                    <connections>
+                        <outlet property="imageView" destination="xlk-Be-6hu" id="Gqp-6n-SNC"/>
+                        <outlet property="sauceLabel" destination="1Tr-LI-lI1" id="bfL-GZ-2IE"/>
+                        <outlet property="titleLabel" destination="ygv-ey-w86" id="afk-Yq-SEs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nuW-lb-coy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="60.267857142857139" y="131.8840579710145"/>
         </scene>
         <!--Add Sandwich View Controller-->
         <scene sceneID="cDh-LU-QZa">
@@ -185,4 +250,7 @@
             <point key="canvasLocation" x="-813.04347826086962" y="866.51785714285711"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="sandwich14" width="756" height="606"/>
+    </resources>
 </document>

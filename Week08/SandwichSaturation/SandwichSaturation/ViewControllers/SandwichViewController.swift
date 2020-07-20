@@ -19,6 +19,8 @@ class SandwichViewController: UITableViewController, SandwichDataSource {
   let store = (UIApplication.shared.delegate as! AppDelegate).coredataManager
   var sandwiches = [Sandwich]()
   var filteredSandwiches = [Sandwich]()
+
+  var selectedSandwich: Sandwich? = nil
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -40,6 +42,7 @@ class SandwichViewController: UITableViewController, SandwichDataSource {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     sandwiches = store.fetchSandwiches()
+    selectedSandwich = nil
   }
 
   func saveSandwich(name: String, sauceAmount: String, imageName: String) {
@@ -54,9 +57,17 @@ class SandwichViewController: UITableViewController, SandwichDataSource {
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "AddSandwichSegue" {
+    switch segue.identifier {
+    case "detailVC":
+      if let selectedSandwich = selectedSandwich {
+      let destination = segue.destination as! DetailViewController
+      destination.sandwich = selectedSandwich
+      }
+    case "AddSandwichSegue":
       let destination = segue.destination as! AddSandwichViewController
       destination.delegate = self
+    default:
+      return
     }
   }
   
@@ -109,6 +120,12 @@ class SandwichViewController: UITableViewController, SandwichDataSource {
       store.delete(sandwich)
       tableView.deleteRows(at: [indexPath], with: .fade)
     }
+  }
+
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    print("Selected row: \(indexPath.row)")
+    selectedSandwich = isFiltering ? filteredSandwiches[indexPath.row] : sandwiches[indexPath.row]
+    performSegue(withIdentifier: "detailVC", sender: self)
   }
 }
 
