@@ -10,8 +10,6 @@ import Foundation
 import CoreData
 
 class CoreDataManager: NSObject {
-  var sandwiches = [Sandwich]()
-  var filteredSandwiches = [Sandwich]()
 
   lazy var persisitentContainer: NSPersistentContainer = {
     let container = NSPersistentContainer(name: "SandwichData")
@@ -41,30 +39,25 @@ class CoreDataManager: NSObject {
     let defaults = UserDefaults.standard
 
     if !defaults.bool(forKey: preloadkey) {
-      guard let sandwiches = loadSandwiches() else { return }
+      guard let sandwiches = loadSeedSandwichesData() else { return }
       let context = persisitentContainer.viewContext
-      print("context: \(context)")
-      for item in sandwiches {
-//        let sandwich = Sandwich(entity: Sandwich.entity(), insertInto: context)
 
+      for item in sandwiches {
         let sandwich = NSEntityDescription.insertNewObject(forEntityName: "Sandwich", into: context) as! Sandwich
         sandwich.name = item.name
         sandwich.sauceAmount = item.sauceAmount.rawValue
         sandwich.imageName = item.imageName
       }
+
       saveContext()
       defaults.set(true, forKey: preloadkey)
       let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Sandwich")
       let count = try? context.count(for: fetchRequest)
       print("\(String(describing: count))")
     }
-
-    print("preloadkey = \(defaults.bool(forKey: preloadkey))")
-
   }
 
-
-    func loadSandwiches() -> [SandwichData]? {
+    func loadSeedSandwichesData() -> [SandwichData]? {
       var loadedSandwiches: [SandwichData]? = nil
     let filename = "sandwiches"
     let decoder = JSONDecoder()
@@ -78,7 +71,6 @@ class CoreDataManager: NSObject {
     do {
       let data = try Data(contentsOf: fileURL)
       loadedSandwiches =  try decoder.decode([SandwichData].self, from: data)
-//      sandwiches.append(contentsOf: sandwichArray)
     } catch let error {
       print("Couldn't parse \(filename) as \(SandwichData.self): \n\(error)")
     }
@@ -91,7 +83,6 @@ class CoreDataManager: NSObject {
     let context = persisitentContainer.viewContext
     do {
       sandwiches = try context.fetch(Sandwich.fetchRequest())
-      print("store sandwiches loaded. Count: \(sandwiches.count)")
     } catch let error {
       print(error.localizedDescription)
     }
@@ -104,7 +95,6 @@ class CoreDataManager: NSObject {
       sandwich.name = name
       sandwich.sauceAmount = sauceAmount
       sandwich.imageName = imageName
-
     saveContext()
   }
 
@@ -115,24 +105,23 @@ class CoreDataManager: NSObject {
   }
 
 
-  func filterSandwiches(name: String = "", query: String = "") -> [Sandwich] {
-  var sands = [Sandwich]()
+  func filterSandwiches(name: String = "", sauceAmount: String = "") -> [Sandwich] {
+  var sandwiches = [Sandwich]()
     let context = persisitentContainer.viewContext
     let request = Sandwich.fetchRequest() as NSFetchRequest<Sandwich>
     if !name.isEmpty {
        let predicate1  = NSPredicate(format: "name CONTAINS [cd] %@", name)
-      let predicate2  = NSPredicate(format: "sauceAmount MATCHES [cd] %@", query)
-      request.predicate = query == "Either" ? predicate1 : NSCompoundPredicate(andPredicateWithSubpredicates: [predicate1, predicate2])
+      let predicate2  = NSPredicate(format: "sauceAmount MATCHES [cd] %@", sauceAmount)
+      request.predicate = sauceAmount == "Either" ? predicate1 : NSCompoundPredicate(andPredicateWithSubpredicates: [predicate1, predicate2])
     } else {
-      request.predicate  = NSPredicate(format: "sauceAmount MATCHES %@", query)
+      request.predicate  = NSPredicate(format: "sauceAmount MATCHES %@", sauceAmount)
     }
     do {
-      sands = try context.fetch(request)
+      sandwiches = try context.fetch(request)
     } catch let error {
       print(error.localizedDescription)
     }
-    print("filteredSandwiches with query -\(query)- gives \(sands.count) sandwiches.")
-  return sands
+  return sandwiches
   }
 
 }

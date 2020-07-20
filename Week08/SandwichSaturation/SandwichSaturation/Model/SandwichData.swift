@@ -26,7 +26,6 @@ enum SauceAmount: Decodable {
 }
 
 struct SandwichData: Decodable {
-  
   let name: String
   let sauceAmount: SauceAmount
   let imageName: String

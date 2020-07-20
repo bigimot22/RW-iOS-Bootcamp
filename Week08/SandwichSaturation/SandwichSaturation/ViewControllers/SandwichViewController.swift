@@ -74,7 +74,7 @@ class SandwichViewController: UITableViewController, SandwichDataSource {
   
   func filterContentForSearchText(_ searchText: String,
                                   sauceAmount: SauceAmount? = nil) {
-    filteredSandwiches = store.filterSandwiches(name: searchText, query: sauceAmount?.rawValue ?? "")
+    filteredSandwiches = store.filterSandwiches(name: searchText, sauceAmount: sauceAmount?.rawValue ?? "")
     tableView.reloadData()
   }
   
