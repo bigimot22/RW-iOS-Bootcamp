@@ -36,6 +36,8 @@ class ViewController: UIViewController {
         }
 
         SoundManager.shared.playSound()
+print("JD: - Going to call network...")
+      Networking.sharedInstance.fetch()
         
     }
 
