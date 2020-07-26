@@ -15,21 +15,39 @@ class SoundManager: NSObject {
 
     private var player: AVAudioPlayer?
 
-    var isSoundEnabled: Bool? {
+    var isSoundEnabled: Bool {
         get {
-            // Since UserDefaults.standard.bool(forKey: "sound") will default to "false" if it has not been set
-            // You might want to use `object`, because if an object has not been set yet it will be nil
-            // Then if it's nil you know it's the user's first time launching the app
-            UserDefaults.standard.object(forKey: "sound") as? Bool
+          if UserDefaults.standard.object(forKey: "sound") == nil {
+            toggleSoundPreference()
+          }
+          return UserDefaults.standard.bool(forKey: "sound")
         }
     }
 
     func playSound() {
+      print("JD: - playing sounds....")
+      player?.stop()
+
+      let path = Bundle.main.path(forResource: "Jeopardy-theme-song.mp3", ofType:nil)!
+      let url = URL(fileURLWithPath: path)
+
+      do {
+          player = try AVAudioPlayer(contentsOf: url)
+          player?.play()
+      } catch {
+          print("Couldnt play sound. Error: \(error)")
+      }
 
     }
 
-    func toggleSoundPreference() {
+  func stopSounds() {
+    player?.stop()
+  }
 
+    func toggleSoundPreference() {
+      let current = UserDefaults.standard.bool(forKey: "sound")
+      print("Changin sound prefs from: \(current) to: \(!current)")
+      UserDefaults.standard.set(!current, forKey: "sound")
     }
 
 }

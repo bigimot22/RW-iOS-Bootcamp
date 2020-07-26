@@ -17,10 +17,7 @@ class ViewController: UIViewController {
   @IBOutlet weak var clueLabel: UILabel!
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var scoreLabel: UILabel!
-  
-//  var clues: [Clue] = []
-//  var correctAnswerClue: Clue?
-//  var points: Int = 0
+
   var userScore = 0 {
     didSet {
       if userScore < 0 { userScore = 0}
@@ -51,13 +48,8 @@ class ViewController: UIViewController {
     tableView.isScrollEnabled = false
 
     
-    if SoundManager.shared.isSoundEnabled == false {
-      soundButton.setImage(UIImage(systemName: "speaker.slash"), for: .normal)
-    } else {
-      soundButton.setImage(UIImage(systemName: "speaker"), for: .normal)
-    }
-    
-    SoundManager.shared.playSound()
+    setupSoundUI()
+
 
     setUpView()
     getNextQuestion()
@@ -88,16 +80,21 @@ class ViewController: UIViewController {
         }
       }
     }
-    
+  }
+
+  func setupSoundUI() {
+    if SoundManager.shared.isSoundEnabled {
+      soundButton.setImage(UIImage(systemName: "speaker"), for: .normal)
+      SoundManager.shared.playSound()
+    } else {
+      soundButton.setImage(UIImage(systemName: "speaker.slash"), for: .normal)
+      SoundManager.shared.stopSounds()
+    }
   }
   
   @IBAction func didPressVolumeButton(_ sender: Any) {
     SoundManager.shared.toggleSoundPreference()
-    if SoundManager.shared.isSoundEnabled == false {
-      soundButton.setImage(UIImage(systemName: "speaker.slash"), for: .normal)
-    } else {
-      soundButton.setImage(UIImage(systemName: "speaker"), for: .normal)
-    }
+    setupSoundUI()
   }
 
   private func processUserSelection(selection: String) {
