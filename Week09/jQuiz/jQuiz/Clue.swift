@@ -8,10 +8,15 @@
 
 import Foundation
 
-struct Clue {
+struct Clue: Codable {
+  let question: String
+  let answer: String
+  let category: Category
+  var value: Int? = 0
 
 }
 
-struct Category {
-
+struct Category: Codable {
+  let id: Int
+  let title: String
 }
