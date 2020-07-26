@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
   
   @IBOutlet weak var logoImageView: UIImageView!
+  @IBOutlet private weak var logoImageHeightConstraint : NSLayoutConstraint!
   @IBOutlet private weak var feedbackIcon: UIImageView!
   @IBOutlet weak var soundButton: UIButton!
   @IBOutlet weak var categoryLabel: UILabel!
@@ -143,6 +144,19 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     cell.userSelected = true
     if let answer = viewmodel?.options[indexPath.row] {
       processUserSelection(selection: answer)
+    }
+  }
+}
+
+
+extension ViewController {
+
+  override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+    if toInterfaceOrientation == .landscapeLeft || toInterfaceOrientation == .landscapeRight{
+      logoImageHeightConstraint.constant = 0
+    }
+    else{
+      logoImageHeightConstraint.constant = 125
     }
   }
 }
