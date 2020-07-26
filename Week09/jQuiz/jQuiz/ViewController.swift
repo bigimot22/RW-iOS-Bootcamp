@@ -20,6 +20,13 @@ class ViewController: UIViewController {
 //  var clues: [Clue] = []
 //  var correctAnswerClue: Clue?
 //  var points: Int = 0
+  var userScore = 0 {
+    didSet {
+      if userScore < 0 { userScore = 0}
+      scoreLabel.text = "\(userScore)"
+    }
+  }
+
   var viewmodel: QuestionViewModel? = nil {
     didSet {
       DispatchQueue.main.async {
@@ -28,7 +35,6 @@ class ViewController: UIViewController {
           return }
         self.categoryLabel.text = viewmodel.categoryTitle
         self.clueLabel.text = viewmodel.question
-        self.scoreLabel.text = viewmodel.points
         self.tableView.reloadData()
       }
     }
@@ -49,11 +55,11 @@ class ViewController: UIViewController {
     
     SoundManager.shared.playSound()
     
-    getQuestion()
+    getNextQuestion()
     
   }
   
-  private func getQuestion() {
+  private func getNextQuestion() {
     print("JD: - Going to call network...")
     Networking.sharedInstance.getRandomCategory(completion: { (categoryId) in
       guard let id = categoryId else { return }
@@ -69,7 +75,7 @@ class ViewController: UIViewController {
   }
   
   private func setUpView() {
-//    self.scoreLabel.text = "\(self.points)"
+//    self.scoreLabel.text = "\(userScore)"
     
   }
   
@@ -79,6 +85,19 @@ class ViewController: UIViewController {
       soundButton.setImage(UIImage(systemName: "speaker.slash"), for: .normal)
     } else {
       soundButton.setImage(UIImage(systemName: "speaker"), for: .normal)
+    }
+  }
+
+  private func processUserSelection(selection: String) {
+    if selection == viewmodel?.correctAnswer {
+      print("Correct answer selected: \(selection)")
+      userScore += Int(viewmodel?.points ?? "0") ?? 0
+    } else {
+      print("Incorrect answer selected: \(selection) - \nCorrect is: \(String(describing: viewmodel?.correctAnswer))")
+      userScore -= Int(viewmodel?.points ?? "0") ?? 0
+    }
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+      self.getNextQuestion()
     }
   }
   
@@ -103,7 +122,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
+    if let answer = viewmodel?.options[indexPath.row] {
+      processUserSelection(selection: answer)
+    }
   }
 }
 
