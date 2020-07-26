@@ -23,7 +23,7 @@ class ViewController: UIViewController {
   var userScore = 0 {
     didSet {
       if userScore < 0 { userScore = 0}
-      scoreLabel.text = "\(userScore)"
+      scoreLabel.text = "Score: \(userScore)"
     }
   }
 
@@ -45,6 +45,7 @@ class ViewController: UIViewController {
     tableView.delegate = self
     tableView.dataSource = self
     tableView.separatorStyle = .none
+    tableView.isScrollEnabled = false
 
     
     if SoundManager.shared.isSoundEnabled == false {
@@ -54,7 +55,8 @@ class ViewController: UIViewController {
     }
     
     SoundManager.shared.playSound()
-    
+
+    setUpView()
     getNextQuestion()
     
   }
@@ -76,6 +78,13 @@ class ViewController: UIViewController {
   
   private func setUpView() {
 //    self.scoreLabel.text = "\(userScore)"
+    Networking.sharedInstance.getHeaderImage { (data) in
+      if let data = data {
+        DispatchQueue.main.async {
+          self.logoImageView.image = UIImage(data: data)
+        }
+      }
+    }
     
   }
   
@@ -114,6 +123,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = UITableViewCell()
+    cell.backgroundColor = .clear
+    cell.layer.borderWidth = 3
+    cell.layer.borderColor = UIColor.systemGray6.cgColor
+    cell.layer.cornerRadius = 10
     if let option = viewmodel?.options[indexPath.row] {
       cell.textLabel?.text = option
       

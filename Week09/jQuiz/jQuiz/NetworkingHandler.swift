@@ -96,5 +96,33 @@ class Networking {
     task.resume()
   }
 
+  func getHeaderImage(completion: @escaping (_ data: Data?) -> Void ) {
+    let headerImageEndpoint = "https://cdn1.edgedatg.com/aws/v2/abc/ABCUpdates/blog/2900129/8484c3386d4378d7c826e3f3690b481b/1600x900-Q90_8484c3386d4378d7c826e3f3690b481b.jpg"
+    guard let url = URL(string: headerImageEndpoint) else {
+      print("Error: Cannot create URL using - \(headerImageEndpoint)")
+      return
+    }
+
+    let urlRequest = URLRequest(url: url)
+    let session = URLSession.shared
+    let task = session.dataTask(with: urlRequest) { data, response, error in
+      if let response = response {
+        print(response.url ?? "url")
+      }
+      if let error = error {
+        print(error)
+      }
+
+      if let data = data {
+        print("Got network data: \(data)")
+        completion(data)
+      }
+    }
+    task.resume()
+
+
+
+  }
+
 
 }
