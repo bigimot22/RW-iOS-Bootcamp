@@ -62,9 +62,7 @@ class ViewController: UIViewController {
       guard let id = categoryId else { return }
       Networking.sharedInstance.getAllCluesInCategory(categoryId: id) { clues in
         guard let clues = clues else { return }
-        //        self.clues = clues
         self.viewmodel = QuestionViewModel(clues: clues)
-        //        self.setUpView()
       }
       
     })
@@ -72,11 +70,16 @@ class ViewController: UIViewController {
   }
   
   private func setUpView() {
-//    self.scoreLabel.text = "\(userScore)"
-    Networking.sharedInstance.getHeaderImage { (data) in
-      if let data = data {
-        DispatchQueue.main.async {
-          self.logoImageView.image = UIImage(data: data)
+    if let image = UIImageView.image(for: "webHeaderImage") {
+      self.logoImageView.image = image
+    } else {
+      Networking.sharedInstance.getHeaderImage { (data) in
+        if let data = data {
+          DispatchQueue.main.async {
+            guard let image = UIImage(data: data) else { return }
+            self.logoImageView.image = image
+            UIImageView.insertImage(image, for: "webHeaderImage")
+          }
         }
       }
     }

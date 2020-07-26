@@ -9,5 +9,28 @@
 import UIKit
 
 extension UIImageView {
+  public static var webImageStore: [String: UIImage] = [:]
+
+  public static func image(for url: URL) -> UIImage? {
+    if let image = webImageStore[url.absoluteString] {
+      return image
+    }
+    return nil
+  }
+
+  public static func image(for imageName: String) -> UIImage? {
+    if let image = webImageStore[imageName] {
+      return image
+    }
+    return nil
+  }
+
+  public static func insertImage(_ image: UIImage, for url: URL) {
+    webImageStore[url.absoluteString] = image
+  }
+
+  public static func insertImage(_ image: UIImage, for imageName: String) {
+    webImageStore[imageName] = image
+  }
 
 }
