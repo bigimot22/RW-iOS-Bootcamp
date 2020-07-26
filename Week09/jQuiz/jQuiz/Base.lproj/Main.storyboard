@@ -22,6 +22,47 @@
                                     <constraint firstAttribute="height" constant="400" id="VWg-EZ-6se"/>
                                 </constraints>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="optionCell" id="5Ax-OX-VnW" customClass="OptionTableViewCell" customModule="jQuiz" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="354" height="50.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Ax-OX-VnW" id="h5z-wl-ykS">
+                                            <rect key="frame" x="0.0" y="0.0" width="354" height="50.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Hz-3a-FHq">
+                                                    <rect key="frame" x="12" y="5" width="330" height="40.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Option here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="RX2-Jc-TBJ">
+                                                            <rect key="frame" x="12" y="8" width="306" height="24.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.66311021342176668" green="0.43882876728696868" blue="0.90415784124999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="RX2-Jc-TBJ" firstAttribute="leading" secondItem="7Hz-3a-FHq" secondAttribute="leading" constant="12" id="Spf-de-Cz3"/>
+                                                        <constraint firstAttribute="trailing" secondItem="RX2-Jc-TBJ" secondAttribute="trailing" constant="12" id="YW9-7f-dr0"/>
+                                                        <constraint firstAttribute="bottom" secondItem="RX2-Jc-TBJ" secondAttribute="bottom" constant="8" id="eUP-lH-AZt"/>
+                                                        <constraint firstItem="RX2-Jc-TBJ" firstAttribute="top" secondItem="7Hz-3a-FHq" secondAttribute="top" constant="8" id="fsT-Ot-rhO"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="7Hz-3a-FHq" firstAttribute="top" secondItem="h5z-wl-ykS" secondAttribute="top" constant="5" id="6Lh-I4-P42"/>
+                                                <constraint firstAttribute="trailing" secondItem="7Hz-3a-FHq" secondAttribute="trailing" constant="12" id="8cf-YA-9dj"/>
+                                                <constraint firstItem="7Hz-3a-FHq" firstAttribute="leading" secondItem="h5z-wl-ykS" secondAttribute="leading" constant="12" id="BZ6-9O-lAG"/>
+                                                <constraint firstAttribute="bottom" secondItem="7Hz-3a-FHq" secondAttribute="bottom" constant="5" id="s8o-bO-Tpe"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="background" destination="7Hz-3a-FHq" id="iek-EV-32O"/>
+                                            <outlet property="label" destination="RX2-Jc-TBJ" id="cWB-WB-mgF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVo-4j-EUU">
                                 <rect key="frame" x="25" y="815" width="19" height="22"/>

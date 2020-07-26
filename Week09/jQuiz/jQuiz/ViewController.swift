@@ -122,13 +122,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = UITableViewCell()
-    cell.backgroundColor = .clear
-    cell.layer.borderWidth = 3
-    cell.layer.borderColor = UIColor.systemGray6.cgColor
-    cell.layer.cornerRadius = 10
+    let cell = tableView.dequeueReusableCell(withIdentifier: "optionCell", for: indexPath) as! OptionTableViewCell // UITableViewCell()
+
+//    cell.backgroundColor = .clear
+//    cell.layer.borderWidth = 3
+//    cell.layer.borderColor = UIColor.systemGray6.cgColor
+//    cell.layer.cornerRadius = 10
     if let option = viewmodel?.options[indexPath.row] {
-      cell.textLabel?.text = option
+//      cell.textLabel?.text = option
+      cell.setUp(with: option)
       
     }
     return cell
