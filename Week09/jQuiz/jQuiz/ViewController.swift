@@ -15,6 +15,7 @@ class ViewController: UIViewController {
   @IBOutlet private weak var feedbackIcon: UIImageView!
   @IBOutlet weak var soundButton: UIButton!
   @IBOutlet weak var categoryLabel: UILabel!
+  @IBOutlet private weak var pointsLabel: UILabel!
   @IBOutlet weak var clueLabel: UILabel!
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var scoreLabel: UILabel!
@@ -33,6 +34,7 @@ class ViewController: UIViewController {
           print("JD: - Not viewmodel")
           return }
         self.categoryLabel.text = viewmodel.categoryTitle
+        self.pointsLabel.text = "for \(viewmodel.points) points"
         self.clueLabel.text = viewmodel.question
         self.tableView.reloadData()
         self.feedbackIcon.image = UIImage(systemName: "questionmark.circle.fill")
