@@ -39,7 +39,7 @@ class ViewController: UIViewController {
       }
     }
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.delegate = self
@@ -122,14 +122,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "optionCell", for: indexPath) as! OptionTableViewCell // UITableViewCell()
+    let cell = tableView.dequeueReusableCell(withIdentifier: "optionCell", for: indexPath) as! OptionTableViewCell
 
-//    cell.backgroundColor = .clear
-//    cell.layer.borderWidth = 3
-//    cell.layer.borderColor = UIColor.systemGray6.cgColor
-//    cell.layer.cornerRadius = 10
     if let option = viewmodel?.options[indexPath.row] {
-//      cell.textLabel?.text = option
       cell.setUp(with: option)
       
     }
@@ -137,6 +132,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let cell = tableView.cellForRow(at: indexPath) as! OptionTableViewCell
+    cell.userSelected = true
     if let answer = viewmodel?.options[indexPath.row] {
       processUserSelection(selection: answer)
     }
