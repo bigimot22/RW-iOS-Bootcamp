@@ -20,7 +20,7 @@ struct QuestionViewModel {
     categoryTitle = firstClue?.category.title ?? "Category"
     question = firstClue?.question ?? "Question"
     correctAnswer = firstClue?.answer ?? "Answer"
-    points = String(firstClue?.value ?? 10)
+    points = String(firstClue?.points ?? 10)
     var opts = [String]()
     for clue in clues {
       opts.append(clue.answer)

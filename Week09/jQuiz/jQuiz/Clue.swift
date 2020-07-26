@@ -12,7 +12,14 @@ struct Clue: Codable {
   let question: String
   let answer: String
   let category: Category
-  var value: Int? = 0
+  var points: Int? = 0
+  var date: String
+
+  enum CodingKeys: String, CodingKey {
+      case date = "created_at"
+    case points = "value"
+    case question, answer, category
+  }
 
 }
 
