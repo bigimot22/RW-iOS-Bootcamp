@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         guard let viewmodel = self.viewmodel else {
           print("JD: - Not viewmodel")
           return }
-        self.categoryLabel.text = viewmodel.categoryTitle
+        self.categoryLabel.text = viewmodel.categoryTitle.uppercased()
         self.pointsLabel.text = "for \(viewmodel.points) points"
         self.clueLabel.text = viewmodel.question
         self.tableView.reloadData()
@@ -43,6 +43,10 @@ class ViewController: UIViewController {
     }
   }
 
+
+
+  // MARK: - LIFE CYCLE METHODS
+
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.delegate = self
@@ -50,9 +54,7 @@ class ViewController: UIViewController {
     tableView.separatorStyle = .none
     tableView.isScrollEnabled = false
 
-    
     setupSoundUI()
-
 
     setUpView()
     getNextQuestion()
