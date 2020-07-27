@@ -50,9 +50,6 @@ class Networking {
     let session = URLSession.shared
 
     let task = session.dataTask(with: urlRequest) { data, response, error in
-      if let response = response {
-        print(response.url ?? "response.url is nil.")
-      }
       if let error = error {
         print(error)
       }

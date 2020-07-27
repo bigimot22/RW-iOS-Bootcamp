@@ -20,7 +20,6 @@ struct Clue: Codable {
     case points = "value"
     case question, answer, category
   }
-
 }
 
 struct Category: Codable {

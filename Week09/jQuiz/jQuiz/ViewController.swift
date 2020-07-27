@@ -43,6 +43,12 @@ class ViewController: UIViewController {
     }
   }
 
+  enum Feedback {
+    case positive
+    case negative
+    case reset
+  }
+
 
 
   // MARK: - LIFE CYCLE METHODS
@@ -62,7 +68,6 @@ class ViewController: UIViewController {
   }
 
   private func getNextQuestion() {
-    print("JD: - Going to call network...")
     Networking.sharedInstance.getRandomCategory(completion: { (categoryId, cluesCount) in
       guard let id = categoryId else { return }
       let ofsset = cluesCount <= 4 ? 0 : cluesCount - 4
@@ -108,18 +113,32 @@ class ViewController: UIViewController {
 
   private func processUserSelection(selection: String) {
     if selection == viewmodel?.correctAnswer {
-      print("Correct answer selected: \(selection)")
-      userScore += Int(viewmodel?.points ?? "0") ?? 0
-      feedbackIcon.image = UIImage(systemName: "checkmark.circle.fill")
-      feedbackIcon.tintColor = .systemGreen
+      giveFeedback(.positive)
     } else {
-      print("Incorrect answer selected: \(selection) - \nCorrect is: \(String(describing: viewmodel?.correctAnswer))")
-      userScore -= Int(viewmodel?.points ?? "0") ?? 0
-      feedbackIcon.image = UIImage(systemName: "xmark.circle.fill")
-      feedbackIcon.tintColor = #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)
+      giveFeedback(.negative)
     }
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
       self.getNextQuestion()
+    }
+  }
+
+  private func giveFeedback(_ selection: Feedback) {
+    switch selection {
+    case .positive:
+      UIView.animate(withDuration: 0.3) {
+        self.userScore += Int(self.viewmodel?.points ?? "0") ?? 0
+        self.feedbackIcon.image = UIImage(systemName: "checkmark.circle.fill")
+        self.feedbackIcon.tintColor = .systemGreen
+      }
+    case.negative:
+      UIView.animate(withDuration: 0.3) {
+        self.userScore -= Int(self.viewmodel?.points ?? "0") ?? 0
+        self.feedbackIcon.image = UIImage(systemName: "xmark.circle.fill")
+        self.feedbackIcon.tintColor = #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)
+      }
+      print("Incorrect answer selected: \(selection) - \nCorrect is: \(String(describing: viewmodel?.correctAnswer))")
+    default:
+      return
     }
   }
   
