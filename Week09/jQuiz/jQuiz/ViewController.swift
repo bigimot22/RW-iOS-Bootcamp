@@ -58,7 +58,7 @@ class ViewController: UIViewController {
     getNextQuestion()
     
   }
-  
+
   private func getNextQuestion() {
     print("JD: - Going to call network...")
     Networking.sharedInstance.getRandomCategory(completion: { (categoryId) in
