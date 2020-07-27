@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6951988424CF01E900F96A4D /* QuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6951988324CF01E800F96A4D /* QuestionViewModel.swift */; };
 		696BF42424CD8BE400BBC67C /* OptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696BF42324CD8BE400BBC67C /* OptionTableViewCell.swift */; };
 		C3DF5B7724C2549400F6D3EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF5B7624C2549400F6D3EC /* AppDelegate.swift */; };
 		C3DF5B7924C2549400F6D3EC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF5B7824C2549400F6D3EC /* SceneDelegate.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6951988324CF01E800F96A4D /* QuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewModel.swift; sourceTree = "<group>"; };
 		696BF42324CD8BE400BBC67C /* OptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTableViewCell.swift; sourceTree = "<group>"; };
 		C3DF5B7324C2549400F6D3EC /* jQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3DF5B7624C2549400F6D3EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				C3DF5B7A24C2549400F6D3EC /* ViewController.swift */,
 				696BF42324CD8BE400BBC67C /* OptionTableViewCell.swift */,
 				C3DF5BAD24C25E1A00F6D3EC /* NetworkingHandler.swift */,
+				6951988324CF01E800F96A4D /* QuestionViewModel.swift */,
 				C3FBE53524C2877C00D11A30 /* SoundManager.swift */,
 				C3DF5BAF24C260A600F6D3EC /* Clue.swift */,
 				C3FBE53724C4DEA300D11A30 /* ImageCache.swift */,
@@ -275,6 +278,7 @@
 				C3DF5B7924C2549400F6D3EC /* SceneDelegate.swift in Sources */,
 				C3DF5BB024C260A600F6D3EC /* Clue.swift in Sources */,
 				C3FBE53824C4DEA300D11A30 /* ImageCache.swift in Sources */,
+				6951988424CF01E900F96A4D /* QuestionViewModel.swift in Sources */,
 				C3FBE53624C2877C00D11A30 /* SoundManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
