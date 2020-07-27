@@ -61,9 +61,10 @@ class ViewController: UIViewController {
 
   private func getNextQuestion() {
     print("JD: - Going to call network...")
-    Networking.sharedInstance.getRandomCategory(completion: { (categoryId) in
+    Networking.sharedInstance.getRandomCategory(completion: { (categoryId, cluesCount) in
       guard let id = categoryId else { return }
-      Networking.sharedInstance.getAllCluesInCategory(categoryId: id) { clues in
+      let ofsset = cluesCount <= 4 ? 0 : cluesCount - 4
+      Networking.sharedInstance.getAllCluesInCategory(categoryId: id, offset: ofsset) { clues in
         guard let clues = clues else { return }
         self.viewmodel = QuestionViewModel(clues: clues)
       }

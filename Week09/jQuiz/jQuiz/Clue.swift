@@ -26,4 +26,11 @@ struct Clue: Codable {
 struct Category: Codable {
   let id: Int
   let title: String
+  let count: Int
+
+  // clues_count
+  enum CodingKeys: String, CodingKey {
+      case count = "clues_count"
+    case id, title
+  }
 }

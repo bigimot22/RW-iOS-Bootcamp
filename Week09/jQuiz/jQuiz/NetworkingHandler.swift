@@ -33,7 +33,7 @@ class Networking {
   static let sharedInstance = Networking()
   private init(){}
 
-  func getRandomCategory(completion: @escaping (Int?) -> Void) {
+  func getRandomCategory(completion: @escaping (_ categoryId: Int?, _ cluesCount: Int) -> Void) {
     let randomClueEndpoint = "http://www.jservice.io/api/random"
     guard let url = URL(string: randomClueEndpoint) else {
       print("Error: Cannot create URL using - \(randomClueEndpoint)")
@@ -50,7 +50,8 @@ class Networking {
           let json = try JSONDecoder().decode([Clue].self, from: data)
           //          print("\(json)")
           print("Got category: \(json[0].category.id)")
-          completion(json[0].category.id)
+          let categoryCount = json[0].category.count
+          completion(json[0].category.id, categoryCount)
 
         } catch let error {
           print("Decoding error: \(error) \nData in decoding error: \(String(decoding: data, as: UTF8.self))")
@@ -62,9 +63,9 @@ class Networking {
   }
 
 
-  func getAllCluesInCategory(categoryId: Int, completion: @escaping ([Clue]?) -> Void) {
+  func getAllCluesInCategory(categoryId: Int, offset: Int, completion: @escaping ([Clue]?) -> Void) {
     //http://www.jservice.io/api/clues/?category=11547​.
-    let cluesEndpoint: String = "http://www.jservice.io/api/clues/?category=\(categoryId)"
+    let cluesEndpoint: String = "http://www.jservice.io/api/clues/?category=\(categoryId)&offset=\(offset)"
     guard let url = URL(string: cluesEndpoint) else {
       print("Error: Cannot create URL using - \(cluesEndpoint)")
       return
