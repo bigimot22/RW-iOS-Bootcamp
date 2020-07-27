@@ -84,6 +84,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6951988524CF12AA00F96A4D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C3DF5B7A24C2549400F6D3EC /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		6951988624CF12C100F96A4D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C3DF5BAF24C260A600F6D3EC /* Clue.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6951988724CF12D200F96A4D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C3DF5BAD24C25E1A00F6D3EC /* NetworkingHandler.swift */,
+				C3FBE53524C2877C00D11A30 /* SoundManager.swift */,
+				C3FBE53724C4DEA300D11A30 /* ImageCache.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		6951988824CF132A00F96A4D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C3DF5B8424C2549A00F6D3EC /* LaunchScreen.storyboard */,
+				696BF42324CD8BE400BBC67C /* OptionTableViewCell.swift */,
+				C3DF5B7C24C2549400F6D3EC /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6951988924CF137700F96A4D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				6951988324CF01E800F96A4D /* QuestionViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		C3DF5B6A24C2549400F6D3EC = {
 			isa = PBXGroup;
 			children = (
@@ -105,16 +149,12 @@
 		C3DF5B7524C2549400F6D3EC /* jQuiz */ = {
 			isa = PBXGroup;
 			children = (
+				6951988624CF12C100F96A4D /* Models */,
+				6951988924CF137700F96A4D /* ViewModels */,
+				6951988824CF132A00F96A4D /* Views */,
+				6951988524CF12AA00F96A4D /* ViewControllers */,
+				6951988724CF12D200F96A4D /* Services */,
 				C3DF5BA924C254A800F6D3EC /* AppDelegate */,
-				C3DF5B7A24C2549400F6D3EC /* ViewController.swift */,
-				696BF42324CD8BE400BBC67C /* OptionTableViewCell.swift */,
-				C3DF5BAD24C25E1A00F6D3EC /* NetworkingHandler.swift */,
-				6951988324CF01E800F96A4D /* QuestionViewModel.swift */,
-				C3FBE53524C2877C00D11A30 /* SoundManager.swift */,
-				C3DF5BAF24C260A600F6D3EC /* Clue.swift */,
-				C3FBE53724C4DEA300D11A30 /* ImageCache.swift */,
-				C3DF5B7C24C2549400F6D3EC /* Main.storyboard */,
-				C3DF5B8424C2549A00F6D3EC /* LaunchScreen.storyboard */,
 				C3DF5BAC24C256D600F6D3EC /* Assets */,
 				C3DF5B8724C2549A00F6D3EC /* Info.plist */,
 			);
