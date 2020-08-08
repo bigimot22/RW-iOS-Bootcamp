@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2L2-XV-3Dr" userLabel="PlayButton">
-                                <rect key="frame" x="175" y="748.5" width="64" height="63"/>
+                                <rect key="frame" x="175" y="778.5" width="64" height="63"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="2L2-XV-3Dr" secondAttribute="height" multiplier="1:1" id="cZk-Tz-yVv"/>
                                     <constraint firstAttribute="height" constant="64" id="ula-fv-nQ9"/>
@@ -29,7 +29,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n5c-NM-MJt" userLabel="ColorButton">
-                                <rect key="frame" x="75" y="757" width="44" height="46"/>
+                                <rect key="frame" x="75" y="787" width="44" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="8RV-LH-31O"/>
                                     <constraint firstAttribute="width" secondItem="n5c-NM-MJt" secondAttribute="height" multiplier="1:1" id="EX4-Aw-u2i"/>
@@ -39,7 +39,7 @@
                                 <state key="normal" backgroundImage="paintbrush.fill" catalog="system"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOd-Qb-RWS" userLabel="ExpanseButton">
-                                <rect key="frame" x="185" y="668.5" width="44" height="43"/>
+                                <rect key="frame" x="185" y="698.5" width="44" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="rOd-Qb-RWS" secondAttribute="height" multiplier="1:1" id="M4b-Nx-LKr"/>
                                     <constraint firstAttribute="height" constant="44" id="bac-ER-95G"/>
@@ -49,7 +49,7 @@
                                 <state key="normal" backgroundImage="arrow.left.and.right.circle.fill" catalog="system"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ptz-n4-IoJ" userLabel="RotateButton">
-                                <rect key="frame" x="295" y="755.5" width="44" height="45"/>
+                                <rect key="frame" x="295" y="785.5" width="44" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="TsW-f9-h36"/>
                                     <constraint firstAttribute="width" secondItem="ptz-n4-IoJ" secondAttribute="height" multiplier="1:1" id="nvz-eV-SkW"/>
@@ -64,7 +64,7 @@
                             <constraint firstItem="ptz-n4-IoJ" firstAttribute="centerY" secondItem="2L2-XV-3Dr" secondAttribute="centerY" id="2KG-gT-5n7"/>
                             <constraint firstItem="rOd-Qb-RWS" firstAttribute="bottom" secondItem="2L2-XV-3Dr" secondAttribute="bottom" constant="-100" id="5X9-Sn-OrX"/>
                             <constraint firstItem="rOd-Qb-RWS" firstAttribute="centerX" secondItem="2L2-XV-3Dr" secondAttribute="centerX" id="FiA-Ou-LpY"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2L2-XV-3Dr" secondAttribute="bottom" constant="50" id="Irj-pl-gxZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2L2-XV-3Dr" secondAttribute="bottom" constant="20" id="Irj-pl-gxZ"/>
                             <constraint firstItem="ptz-n4-IoJ" firstAttribute="trailing" secondItem="2L2-XV-3Dr" secondAttribute="trailing" constant="100" id="Ixu-Rw-tUE"/>
                             <constraint firstItem="n5c-NM-MJt" firstAttribute="centerY" secondItem="2L2-XV-3Dr" secondAttribute="centerY" id="XDN-wp-g2L"/>
                             <constraint firstItem="2L2-XV-3Dr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="v3M-4u-8zW"/>

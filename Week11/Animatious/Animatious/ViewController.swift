@@ -20,8 +20,19 @@ class ViewController: UIViewController {
 
   private var showOptionButtons = false
 
+  private lazy var animationObject: UIImageView = {
+      let image = UIImageView()
+      image.image =  #imageLiteral(resourceName: "ray_thermometer_window")//imageLiteral(resourceName: "appLogo")
+      image.contentMode = .scaleAspectFit
+      image.translatesAutoresizingMaskIntoConstraints = false
+      return image
+  }()
+
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    view.addSubview(animationObject)
+    addConstraintsToView()
 
     showOptionButtons = false
     resetButtonsConstraints()
@@ -58,6 +69,25 @@ class ViewController: UIViewController {
 
   private func playSelectedAnimations() {
 
+  }
+
+  func addConstraintsToView() {
+  // adding constraints to topViewForImage
+  NSLayoutConstraint.activate([
+  animationObject.leadingAnchor.constraint(equalTo: view.leadingAnchor),                         animationObject.trailingAnchor.constraint(equalTo: view.trailingAnchor),                        animationObject.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+  animationObject.heightAnchor.constraint(equalToConstant: 150)
+  ])
+//  heightAnchor = topImageView.heightAnchor.constraint(equalTo:view.heightAnchor, multiplier: 0.3)
+//  // the multiplier 0.3 means we are setting height of topViewForImage to the 30% of view's height.
+//  heightAnchor?.isActive = true
+//  // adding constraints to topImageView
+//  NSLayoutConstraint.activate([
+//  topImageView.centerXAnchor.constraint(equalTo: topViewForImage.centerXAnchor),
+//  topImageView.centerYAnchor.constraint(equalTo:
+//  topViewForImage.centerYAnchor),
+//  topImageView.widthAnchor.constraint(equalTo: topViewForImage.widthAnchor, multiplier: 0.7),
+//  topImageView.heightAnchor.constraint(equalTo: topViewForImage.heightAnchor, multiplier: 0.4)
+//  ])
   }
 
 
