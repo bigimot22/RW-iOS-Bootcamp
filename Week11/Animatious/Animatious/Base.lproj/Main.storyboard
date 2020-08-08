@@ -24,6 +24,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="44"/>
                                 <color key="tintColor" red="0.34037011740000001" green="0.14033961180000001" blue="0.55927964149999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" backgroundImage="play.circle.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="didTapPlay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8RH-1B-63s"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n5c-NM-MJt" userLabel="ColorButton">
                                 <rect key="frame" x="75" y="757" width="44" height="46"/>
@@ -69,6 +72,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="leftButton" destination="n5c-NM-MJt" id="ksE-cn-mHz"/>
+                        <outlet property="leftButtonLeadingConstraint" destination="val-LP-mqy" id="Rj2-KG-MNp"/>
+                        <outlet property="rightButton" destination="ptz-n4-IoJ" id="HCb-iv-zm5"/>
+                        <outlet property="rightButtonTrailingConstraint" destination="Ixu-Rw-tUE" id="4Zn-2b-COO"/>
+                        <outlet property="topButton" destination="rOd-Qb-RWS" id="bOn-fg-3V9"/>
+                        <outlet property="topButtonBottomConstraint" destination="5X9-Sn-OrX" id="dY3-Dc-Ehj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
