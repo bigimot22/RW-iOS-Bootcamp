@@ -14,6 +14,7 @@
 		69AD9CE024DE980E004B3757 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69AD9CDF24DE980E004B3757 /* Assets.xcassets */; };
 		69AD9CE324DE980E004B3757 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69AD9CE124DE980E004B3757 /* LaunchScreen.storyboard */; };
 		69AD9CEB24DEC57E004B3757 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AD9CEA24DEC57D004B3757 /* Constants.swift */; };
+		69AD9CED24DED311004B3757 /* CALayer + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AD9CEC24DED311004B3757 /* CALayer + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		69AD9CE224DE980E004B3757 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		69AD9CE424DE980E004B3757 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		69AD9CEA24DEC57D004B3757 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		69AD9CEC24DED311004B3757 /* CALayer + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				69AD9CD824DE9806004B3757 /* SceneDelegate.swift */,
 				69AD9CDA24DE9806004B3757 /* ViewController.swift */,
 				69AD9CEA24DEC57D004B3757 /* Constants.swift */,
+				69AD9CEC24DED311004B3757 /* CALayer + Extension.swift */,
 				69AD9CDC24DE9806004B3757 /* Main.storyboard */,
 				69AD9CDF24DE980E004B3757 /* Assets.xcassets */,
 				69AD9CE124DE980E004B3757 /* LaunchScreen.storyboard */,
@@ -143,6 +146,7 @@
 			files = (
 				69AD9CDB24DE9806004B3757 /* ViewController.swift in Sources */,
 				69AD9CD724DE9806004B3757 /* AppDelegate.swift in Sources */,
+				69AD9CED24DED311004B3757 /* CALayer + Extension.swift in Sources */,
 				69AD9CD924DE9806004B3757 /* SceneDelegate.swift in Sources */,
 				69AD9CEB24DEC57E004B3757 /* Constants.swift in Sources */,
 			);

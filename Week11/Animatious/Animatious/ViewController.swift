@@ -23,29 +23,30 @@ class ViewController: UIViewController {
   private var readyToAnimate = false
 
   private var rotation = CGAffineTransform(rotationAngle: .pi / 1)
-  private var scale = CGAffineTransform(scaleX: 1.3, y: 1.3)
-  private var translation = CGAffineTransform(translationX: 200, y: 0)
-  private var color = Colors.active
+  private var scale = CGAffineTransform(scaleX: 1.0, y: 1.0)
+  private var color = Colors.purple
 
   private lazy var animationObject: UIImageView = {
-      let image = UIImageView()
-      image.image =  #imageLiteral(resourceName: "ray_thermometer_window")
-      image.contentMode = .scaleAspectFit
-      image.translatesAutoresizingMaskIntoConstraints = false
-      return image
+    let image = UIImageView()
+    image.image =  #imageLiteral(resourceName: "ray_thermometer_window")
+    image.contentMode = .scaleAspectFill
+    image.layer.borderWidth = 10.0
+    image.layer.masksToBounds = false
+    image.layer.borderColor = Colors.purple.cgColor
+    image.layer.cornerRadius =  75 // image.frame.size.height / 2
+    image.clipsToBounds = true
+    image.translatesAutoresizingMaskIntoConstraints = false
+    return image
   }()
 
-  private var playFeedbackColor: UIColor = .purple {
-    didSet {
-      playButton.tintColor = playFeedbackColor
-    }
-  }
+
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     view.addSubview(animationObject)
     addConstraintsToView()
+    resetAnimatableFields()
 
     showOptionButtons = false
     resetButtonsConstraints()
@@ -55,16 +56,21 @@ class ViewController: UIViewController {
 
   @IBAction private func didTapColorButton(_ sender: UIButton) {
     print("didTapColorButton: \(1)")
+    color = Colors.active
+    readyToAnimate = true
 
   }
 
   @IBAction private func didTapExpanseButton(_ sender: UIButton) {
     print("didTapExpanseButton: \(2)")
+    scale = CGAffineTransform(scaleX: 1.3, y: 1.3)
     readyToAnimate = true
   }
 
   @IBAction private func didTapRotateButton(_ sender: UIButton) {
     print("didTapRotateButton: \(3)")
+    rotation = CGAffineTransform(rotationAngle: .pi / 1)
+    readyToAnimate = true
   }
 
   @IBAction private func didTapPlay(_ sender: UIButton) {
@@ -74,9 +80,6 @@ class ViewController: UIViewController {
     } else {
       showOptionButtons.toggle()
       playButtonsAnimations()
-//      if readyToAnimate {
-//        sender.tintColor = .yellow
-//      }
     }
 
   }
@@ -107,6 +110,7 @@ class ViewController: UIViewController {
     UIView.animate(withDuration: 1, animations: {
       self.animationObject.transform = self.scale.concatenating(self.rotation)
       self.animationObject.backgroundColor = self.color
+      self.animationObject.layer.animateBorderColor(from: Colors.purple, to: self.color, withDuration: 0.3)
     }) { _ in
       self.resetAnimationObject()
     }
@@ -114,31 +118,31 @@ class ViewController: UIViewController {
   }
 
   private func resetAnimationObject() {
-    UIView.animate(withDuration: 0.6) {
+    UIView.animate(withDuration: 0.6, animations: {
       self.animationObject.transform = CGAffineTransform.identity
       self.animationObject.backgroundColor = .clear
+      self.animationObject.layer.animateBorderColor(from: self.color, to: Colors.purple, withDuration: 0.2)
       self.readyToAnimate = false
       self.playButton.tintColor = Colors.purple
+    }) { _ in
+      self.resetAnimatableFields()
     }
   }
 
+  private func resetAnimatableFields() {
+    self.color = Colors.purple
+    self.rotation = self.animationObject.transform
+    self.scale = self.animationObject.transform
+  }
+
   func addConstraintsToView() {
-  // adding constraints to topViewForImage
-  NSLayoutConstraint.activate([
-  animationObject.leadingAnchor.constraint(equalTo: view.leadingAnchor),                         animationObject.trailingAnchor.constraint(equalTo: view.trailingAnchor),                        animationObject.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
-  animationObject.heightAnchor.constraint(equalToConstant: 150)
-  ])
-//  heightAnchor = topImageView.heightAnchor.constraint(equalTo:view.heightAnchor, multiplier: 0.3)
-//  // the multiplier 0.3 means we are setting height of topViewForImage to the 30% of view's height.
-//  heightAnchor?.isActive = true
-//  // adding constraints to topImageView
-//  NSLayoutConstraint.activate([
-//  topImageView.centerXAnchor.constraint(equalTo: topViewForImage.centerXAnchor),
-//  topImageView.centerYAnchor.constraint(equalTo:
-//  topViewForImage.centerYAnchor),
-//  topImageView.widthAnchor.constraint(equalTo: topViewForImage.widthAnchor, multiplier: 0.7),
-//  topImageView.heightAnchor.constraint(equalTo: topViewForImage.heightAnchor, multiplier: 0.4)
-//  ])
+    NSLayoutConstraint.activate([
+      animationObject.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      animationObject.centerYAnchor.constraint(equalTo: view.centerYAnchor,constant: -90),
+      animationObject.widthAnchor.constraint(equalToConstant: 150),
+      animationObject.heightAnchor.constraint(equalToConstant: 150)
+    ])
+
   }
 
 
