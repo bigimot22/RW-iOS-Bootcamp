@@ -28,8 +28,8 @@ class ViewController: UIViewController {
 
   private lazy var animationObject: UIImageView = {
     let image = UIImageView()
-    image.image =  #imageLiteral(resourceName: "ray_thermometer_window")
-    image.contentMode = .scaleAspectFill
+    image.image =  #imageLiteral(resourceName: "logo-raywenderlich-250")
+    image.contentMode = .scaleAspectFit
     image.layer.borderWidth = 10.0
     image.layer.masksToBounds = false
     image.layer.borderColor = Colors.purple.cgColor
