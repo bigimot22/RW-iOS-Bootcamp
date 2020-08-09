@@ -54,7 +54,7 @@ class ViewController: UIViewController {
     resetAnimatableFields()
 
     showOptionButtons = false
-    resetButtonsConstraints()
+    setButtonsConstraints()
     setButtonsAlpha()
 
   }
@@ -65,6 +65,7 @@ class ViewController: UIViewController {
     readyToAnimate = true
     let actionLabel = "Color".uppercased()
     showNotificationBanner(message: "\(actionLabel) animation added successfully!")
+    sender.tintColor = Colors.active
 
   }
 
@@ -74,6 +75,7 @@ class ViewController: UIViewController {
     readyToAnimate = true
     let actionLabel = "Scale".uppercased()
     showNotificationBanner(message: "\(actionLabel) animation added successfully!")
+    sender.tintColor = Colors.active
   }
 
   @IBAction private func didTapRotateButton(_ sender: UIButton) {
@@ -82,6 +84,7 @@ class ViewController: UIViewController {
     readyToAnimate = true
     let actionLabel = "Rotation".uppercased()
     showNotificationBanner(message: "\(actionLabel) animation added successfully!")
+    sender.tintColor = Colors.active
   }
 
   @IBAction private func didTapPlay(_ sender: UIButton) {
@@ -96,7 +99,7 @@ class ViewController: UIViewController {
   }
 
   private func playButtonsAnimations() {
-    resetButtonsConstraints()
+    setButtonsConstraints()
 
     UIView.animate(withDuration: 0.3) {
       self.view.layoutIfNeeded()
@@ -105,7 +108,7 @@ class ViewController: UIViewController {
     }
   }
 
-  private func resetButtonsConstraints() {
+  private func setButtonsConstraints() {
     self.leftButtonLeadingConstraint.constant = self.showOptionButtons ? -100 : 0
     self.topButtonBottomConstraint.constant = self.showOptionButtons ? -100 : 0
     self.rightButtonTrailingConstraint.constant = self.showOptionButtons ? 100 : 0
@@ -124,6 +127,7 @@ class ViewController: UIViewController {
       self.animationObject.layer.animateBorderColor(from: Colors.purple, to: self.color, withDuration: 0.3)
     }) { _ in
       self.resetAnimationObject()
+      self.resetButtonsTint()
     }
 
   }
@@ -144,6 +148,12 @@ class ViewController: UIViewController {
     self.color = Colors.purple
     self.rotation = self.animationObject.transform
     self.scale = self.animationObject.transform
+  }
+
+  private func resetButtonsTint() {
+    leftButton.tintColor = Colors.purple
+    topButton.tintColor = Colors.purple
+    rightButton.tintColor = Colors.purple
   }
 
   private func showNotificationBanner(message: String) {
