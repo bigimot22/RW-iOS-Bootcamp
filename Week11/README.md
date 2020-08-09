@@ -6,7 +6,7 @@
 <!-- Body -->
 ## RW iOS Bootcamp Assigment 11
 
-**Animatious**  is an app that let you choose animations and combine them to be apply to the animation object and play all the animations at once.  It demostrate implementing animation concatenation, delays and completion blocks. Also, if you tap the RW logo and extra animation is shown as an easter egg. I built it specifically for assigment 11 of the firsts ever RW iOS Bootcamp at https://www.raywenderlich.com/10529048-ios-bootcamp.
+**Animatious**  is an app that let you choose animations and combine them to be apply to the animation object and play all the animations at once.  It demostrate implementing animation concatenation, delays and completion blocks. Also, if you tap the RW logo an extra animation is shown as an easter egg. I built it specifically for assigment 11 of the firsts ever RW iOS Bootcamp at https://www.raywenderlich.com/10529048-ios-bootcamp.
 
 
 ## Screenshots
