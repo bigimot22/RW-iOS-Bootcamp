@@ -15,6 +15,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bQJ-kb-yYp" userLabel="NotificationView">
+                                <rect key="frame" x="47" y="52" width="320" height="80"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="uGb-nl-t25">
+                                        <rect key="frame" x="8" y="8.5" width="34" height="63"/>
+                                        <color key="tintColor" red="0.36106375899999998" green="0.6872085631" blue="0.58677261599999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="34" id="i65-hQ-eaF"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All chosen animations added successfully" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="3Hz-Kc-CSB">
+                                        <rect key="frame" x="50" y="8" width="262" height="64"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="uGb-nl-t25" secondAttribute="bottom" constant="8" id="1rk-Kb-CvH"/>
+                                    <constraint firstItem="3Hz-Kc-CSB" firstAttribute="top" secondItem="bQJ-kb-yYp" secondAttribute="top" constant="8" id="7RI-xQ-GZF"/>
+                                    <constraint firstAttribute="width" constant="320" id="DrR-D9-0EM"/>
+                                    <constraint firstAttribute="height" constant="80" id="O6g-qF-AHr"/>
+                                    <constraint firstItem="uGb-nl-t25" firstAttribute="top" secondItem="bQJ-kb-yYp" secondAttribute="top" constant="8" id="Vbf-vc-moO"/>
+                                    <constraint firstAttribute="trailing" secondItem="3Hz-Kc-CSB" secondAttribute="trailing" constant="8" id="Yjw-lb-hss"/>
+                                    <constraint firstItem="3Hz-Kc-CSB" firstAttribute="leading" secondItem="uGb-nl-t25" secondAttribute="trailing" constant="8" id="d6y-X5-bJW"/>
+                                    <constraint firstAttribute="bottom" secondItem="3Hz-Kc-CSB" secondAttribute="bottom" constant="8" id="fob-OM-5AG"/>
+                                    <constraint firstItem="uGb-nl-t25" firstAttribute="leading" secondItem="bQJ-kb-yYp" secondAttribute="leading" constant="8" id="wxX-Cw-hSf"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2L2-XV-3Dr" userLabel="PlayButton">
                                 <rect key="frame" x="175" y="778.5" width="64" height="63"/>
                                 <constraints>
@@ -72,10 +107,12 @@
                         <constraints>
                             <constraint firstItem="ptz-n4-IoJ" firstAttribute="centerY" secondItem="2L2-XV-3Dr" secondAttribute="centerY" id="2KG-gT-5n7"/>
                             <constraint firstItem="rOd-Qb-RWS" firstAttribute="bottom" secondItem="2L2-XV-3Dr" secondAttribute="bottom" constant="-100" id="5X9-Sn-OrX"/>
+                            <constraint firstItem="bQJ-kb-yYp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="B0s-L7-nwT"/>
                             <constraint firstItem="rOd-Qb-RWS" firstAttribute="centerX" secondItem="2L2-XV-3Dr" secondAttribute="centerX" id="FiA-Ou-LpY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2L2-XV-3Dr" secondAttribute="bottom" constant="20" id="Irj-pl-gxZ"/>
                             <constraint firstItem="ptz-n4-IoJ" firstAttribute="trailing" secondItem="2L2-XV-3Dr" secondAttribute="trailing" constant="100" id="Ixu-Rw-tUE"/>
                             <constraint firstItem="n5c-NM-MJt" firstAttribute="centerY" secondItem="2L2-XV-3Dr" secondAttribute="centerY" id="XDN-wp-g2L"/>
+                            <constraint firstItem="bQJ-kb-yYp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dpL-cK-5Sd"/>
                             <constraint firstItem="2L2-XV-3Dr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="v3M-4u-8zW"/>
                             <constraint firstItem="n5c-NM-MJt" firstAttribute="leading" secondItem="2L2-XV-3Dr" secondAttribute="leading" constant="-100" id="val-LP-mqy"/>
                         </constraints>
@@ -84,6 +121,9 @@
                     <connections>
                         <outlet property="leftButton" destination="n5c-NM-MJt" id="ksE-cn-mHz"/>
                         <outlet property="leftButtonLeadingConstraint" destination="val-LP-mqy" id="Rj2-KG-MNp"/>
+                        <outlet property="notificationLabel" destination="3Hz-Kc-CSB" id="c2q-jM-ack"/>
+                        <outlet property="notificationTopConstraint" destination="B0s-L7-nwT" id="xYZ-CE-30n"/>
+                        <outlet property="notificationView" destination="bQJ-kb-yYp" id="Tgb-Xp-TqK"/>
                         <outlet property="playButton" destination="2L2-XV-3Dr" id="zmL-tl-STd"/>
                         <outlet property="rightButton" destination="ptz-n4-IoJ" id="HCb-iv-zm5"/>
                         <outlet property="rightButtonTrailingConstraint" destination="Ixu-Rw-tUE" id="4Zn-2b-COO"/>
@@ -93,11 +133,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="109"/>
+            <point key="canvasLocation" x="137.68115942028987" y="108.48214285714285"/>
         </scene>
     </scenes>
     <resources>
         <image name="arrow.left.and.right.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="paintbrush.fill" catalog="system" width="128" height="125"/>
         <image name="play.circle.fill" catalog="system" width="128" height="121"/>
         <image name="rotate.right.fill" catalog="system" width="128" height="128"/>

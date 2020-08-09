@@ -13,14 +13,18 @@ class ViewController: UIViewController {
   @IBOutlet private weak var leftButtonLeadingConstraint: NSLayoutConstraint!
   @IBOutlet private weak var topButtonBottomConstraint: NSLayoutConstraint!
   @IBOutlet private weak var rightButtonTrailingConstraint: NSLayoutConstraint!
+  @IBOutlet private weak var notificationTopConstraint: NSLayoutConstraint!
 
   @IBOutlet private weak var playButton: UIButton!
   @IBOutlet private weak var leftButton: UIButton!
   @IBOutlet private weak var topButton: UIButton!
   @IBOutlet private weak var rightButton: UIButton!
+  @IBOutlet private weak var notificationLabel: UILabel!
+  @IBOutlet private weak var notificationView: UIView!
 
   private var showOptionButtons = false
   private var readyToAnimate = false
+  private var showingBanner = false
 
   private var rotation = CGAffineTransform(rotationAngle: .pi / 1)
   private var scale = CGAffineTransform(scaleX: 1.0, y: 1.0)
@@ -46,6 +50,7 @@ class ViewController: UIViewController {
 
     view.addSubview(animationObject)
     addConstraintsToView()
+    notificationTopConstraint.constant = -150
     resetAnimatableFields()
 
     showOptionButtons = false
@@ -58,6 +63,8 @@ class ViewController: UIViewController {
     print("didTapColorButton: \(1)")
     color = Colors.active
     readyToAnimate = true
+    let actionLabel = "Color".uppercased()
+    showNotificationBanner(message: "\(actionLabel) animation added successfully!")
 
   }
 
@@ -65,12 +72,16 @@ class ViewController: UIViewController {
     print("didTapExpanseButton: \(2)")
     scale = CGAffineTransform(scaleX: 1.3, y: 1.3)
     readyToAnimate = true
+    let actionLabel = "Scale".uppercased()
+    showNotificationBanner(message: "\(actionLabel) animation added successfully!")
   }
 
   @IBAction private func didTapRotateButton(_ sender: UIButton) {
     print("didTapRotateButton: \(3)")
     rotation = CGAffineTransform(rotationAngle: .pi / 1)
     readyToAnimate = true
+    let actionLabel = "Rotation".uppercased()
+    showNotificationBanner(message: "\(actionLabel) animation added successfully!")
   }
 
   @IBAction private func didTapPlay(_ sender: UIButton) {
@@ -133,6 +144,28 @@ class ViewController: UIViewController {
     self.color = Colors.purple
     self.rotation = self.animationObject.transform
     self.scale = self.animationObject.transform
+  }
+
+  private func showNotificationBanner(message: String) {
+    notificationLabel.text = message
+    if showingBanner {
+      return
+    }
+    showingBanner = true
+    view.bringSubviewToFront(notificationView)
+    notificationTopConstraint.constant = 12
+    UIView.animate(withDuration: 0.3, animations: {
+      self.view.layoutIfNeeded()
+    }) { _ in
+      self.notificationTopConstraint.constant = -150
+      UIView.animate(withDuration: 0.3, delay: 0.8, animations:  {
+        self.view.layoutIfNeeded()
+      }) { _ in
+        self.notificationLabel.text = ""
+        self.showingBanner = false
+      }
+    }
+
   }
 
   func addConstraintsToView() {
