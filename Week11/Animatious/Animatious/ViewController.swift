@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Lottie
 
 class ViewController: UIViewController {
 
@@ -43,6 +44,8 @@ class ViewController: UIViewController {
     return image
   }()
 
+  private var lottieView: AnimationView?
+
 
 
   override func viewDidLoad() {
@@ -50,6 +53,10 @@ class ViewController: UIViewController {
 
     view.addSubview(animationObject)
     addConstraintsToView()
+    let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+    animationObject.isUserInteractionEnabled = true
+    animationObject.addGestureRecognizer(tapGestureRecognizer)
+
     notificationTopConstraint.constant = -150
     resetAnimatableFields()
 
@@ -156,7 +163,7 @@ class ViewController: UIViewController {
     rightButton.tintColor = Colors.purple
   }
 
-  private func showNotificationBanner(message: String) {
+  private func showNotificationBanner(message: String, showTime: Double = 0.8) {
     notificationLabel.text = message
     if showingBanner {
       return
@@ -168,7 +175,7 @@ class ViewController: UIViewController {
       self.view.layoutIfNeeded()
     }) { _ in
       self.notificationTopConstraint.constant = -150
-      UIView.animate(withDuration: 0.3, delay: 0.8, animations:  {
+      UIView.animate(withDuration: 0.3, delay: showTime, animations:  {
         self.view.layoutIfNeeded()
       }) { _ in
         self.notificationLabel.text = ""
@@ -176,6 +183,28 @@ class ViewController: UIViewController {
       }
     }
 
+  }
+
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+  //      let tappedImage = tapGestureRecognizer.view as! UIImageView
+
+        playTribute()
+    }
+
+  private func playTribute() {
+    lottieView = .init(name: "confetti")
+    lottieView?.frame = view.bounds
+    view.addSubview(lottieView!)
+    lottieView?.loopMode = .loop
+    lottieView?.play()
+
+    showNotificationBanner(message: "Thank you RW Bootcamp 2020!!!", showTime: 3.0)
+
+    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+      self.lottieView?.stop()
+      self.lottieView?.removeFromSuperview()
+    }
   }
 
   func addConstraintsToView() {
